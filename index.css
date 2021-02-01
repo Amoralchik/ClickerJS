@@ -1,0 +1,191 @@
+html {
+    font-family: 'Press Start 2P';
+    font-size: 2rem;
+}
+
+body {
+    background-color: #222;
+    color: white;
+}
+
+.divbody {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.shellHide {
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
+  }
+
+.conteiner {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+li {
+    list-style-type: decimal;
+    font-size: .55rem;
+    text-decoration: none;
+    margin: 0px;
+}
+
+.toph1 {
+    color: white;
+    font-size: .55rem;
+    margin-bottom: 10px;
+}
+
+.button {
+    --color: firebrick;
+    --border-color: firebrick;
+    --shadow-color: rgb(112, 20, 20);
+
+    position: relative;
+    font-size: .75rem;
+    width: 200px;
+    height: 75px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 2rem;
+    border: none;
+    background-size: cover;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+    background-color: var(--color);
+    box-shadow: 0 -3px var(--color),
+                3px 0 var(--color),
+                0 3px var(--color),
+                -3px 0 var(--color),
+                0 -6px var(--border-color),
+                3px -3px var(--border-color),
+                6px 0 var(--border-color),
+                0 6px var(--border-color),
+                -3px 3px var(--border-color),
+                -6px 0 var(--border-color),
+                -3px -3px var(--border-color),
+                3px 3px var(--border-color),
+                0px 9px var(--shadow-color),
+                3px 6px var(--shadow-color),
+                6px 3px var(--shadow-color),
+                0px 9px var(--shadow-color),
+                -3px 6px var(--shadow-color),
+                -6px 3px var(--shadow-color);
+}
+
+.button:active {
+    top: 6px;
+	box-shadow: 0 -3px var(--color),
+                3px 0 var(--color),
+                0 3px var(--color),
+                -3px 0 var(--color),
+                0 -6px var(--border-color),
+                3px -3px var(--border-color),
+                6px 0 var(--border-color),
+                0 6px var(--border-color),
+                -3px 3px var(--border-color),
+                -6px 0 var(--border-color),
+                -3px -3px var(--border-color),
+                3px 3px var(--border-color),
+                0px 6px var(--shadow-color),
+                3px 3px var(--shadow-color),
+                6px 0px var(--shadow-color),
+                0px 6px var(--shadow-color),
+                -3px 3px var(--shadow-color),
+                -6px 0px var(--shadow-color);
+}
+
+.restart {
+    --color: rgb(122, 122, 122);
+    --border-color:rgb(122, 122, 122);
+    --shadow-color:rgb(122, 122, 122);
+    font-size: .25rem; 
+
+    width: 75px;
+    height: 25px;
+}
+
+.hide{
+    display: none;
+}
+
+/*media*/
+
+.footer__style {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	align-items: center;
+	text-align: center;
+}
+
+.media__block {
+	justify-content: space-between;
+	display: inline-flex;
+	align-items: center;
+}
+
+.media__a{
+	display: inline-flex;
+	text-align: center;
+	align-items: center;
+	text-decoration: none;
+	color: #fff;
+
+	transition: color .2s linear;
+}
+
+.media__a:active{
+	color: currentColor;
+}
+
+.media__a:hover{
+	text-decoration: none;
+	color: #ff005b;
+	cursor: pointer;
+}
+
+.media__img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	margin: 20px;
+}
+
+.media__text {
+	font-size: 20px;
+	text-transform: uppercase;
+	vertical-align: top;
+	margin: 0 15px;
+	text-decoration: none;
+}
+
+#display,
+#time__display,
+#counter {
+    height: 32px;
+}

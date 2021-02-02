@@ -17,10 +17,33 @@ const display = document.querySelector('#display'),
       timeDisplay = document.querySelector('#time__display')
       button = document.querySelector('#button'),
       counter = document.querySelector('#counter'),
-      restartButton = document.querySelector('#restart');
+      restartButton = document.querySelector('#restart'),
+      winterButton = document.querySelector('#winter'),
+      bodyHtml = document.querySelector("#body"),
+      mediaText = document.querySelector("#mediaText");
 
 button.onclick = start;
-restartButton.onclick = restart;
+
+let themeWinterOn = true;
+
+winterButton.onclick = () => {
+    if (themeWinterOn) {
+        restartButton.classList.add("winter__restart")
+        winterButton.classList.add("winter__restart")
+        button.classList.add("winter__button")
+        bodyHtml.classList.add("winter")
+        mediaText.classList.add("winter")
+        themeWinterOn = false;
+    } else {
+        restartButton.classList.remove("winter__restart")
+        winterButton.classList.remove("winter__restart")
+        button.classList.remove("winter__button")
+        bodyHtml.classList.remove("winter")
+        mediaText.classList.remove("winter")
+        themeWinterOn = true;
+    }
+    
+};
 
 function restart() {
     clicks = 1;
@@ -29,6 +52,7 @@ function restart() {
     button.textContent = "Start Game";
     display.textContent = ``;
     button.onclick = start;
+    restartButton.onclick = false;
 };
 
 function start() {
@@ -69,6 +93,7 @@ function start() {
         };  
 
         restartButton.classList.remove("hide")
+        restartButton.onclick = restart;
 
         clearInterval(interval);
         clearTimeout(timeout);

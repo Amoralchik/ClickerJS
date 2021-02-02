@@ -7,12 +7,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body id="body">
     <main class="main">
         <div class="shellHide" id="time__display"></div>
         <div class="shellHide" id="display"></div>
         <button class="button shellHide" id="button">Start Game</button>
-        <button class="button shellHide restart hide" id="restart">restart</button>
+        <div class="settings shellHide">
+            <button class="button shellHide settingsButton hide" id="restart"> restart </button>
+            <button class="button shellHide settingsButton" id="winter"> Light on/off </button>
+        </div>
     </main>
 
     <div class="conteiner">
@@ -23,9 +26,9 @@
     <div class="footer__style shellHide">
         <div class="media__block">
                 
-            <a class="media__a" href="https://github.com/Amoralchik/ClickerJS">
+            <a class="media__a" href="https://github.com/Amoralchik/ClickerJS" target="_blank">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/733/733553.svg" class="media__img" alt="" />
-                <p class="media__text"> Version: 0.7.6 </p>
+                <p class="media__text" id="mediaText"> Version: 0.8.2 </p>
             </a>
 
         </div>

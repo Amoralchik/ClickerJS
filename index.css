@@ -178,8 +178,8 @@ li {
 }
 
 .winter {
-    background-color: #9FA19A;
-    color: #0B090A;
+    background-color: #F2F8F8;
+    color:  #000000;
 }
 
 .winter__button {
@@ -187,7 +187,7 @@ li {
     --border-color: #5A6886;
     --shadow-color:#2B2E3B;
 
-    color: #0B090A;
+    color: #000000;
 }
 
 .winter__restart {
@@ -195,7 +195,7 @@ li {
     --border-color:#7A84A3;
     --shadow-color:#2B2E3B;
 
-    color: #0B090A;
+    color: #000000;
 }
 
 #display,

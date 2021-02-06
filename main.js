@@ -1,11 +1,51 @@
+let inputUN = document.querySelector('#input__UserName');
+let btnUN = document.querySelector('#btnUN');
 
 let clicks = 1,
     scoreDB = clicks,
-    usernameDB = prompt("Your UserName", "unknown user");
+    usernameDB = "Guest";
 
 const userDB = {
     user: usernameDB,
     score: scoreDB
+};
+
+const showAlertLogin = document.querySelector("#showAlertLogin");
+
+btnUN.onclick = () => {
+    if (inputUN.value == "" || inputUN.value == null || inputUN.value == undefined ) {
+        userDB.user = "Guest";
+    } else { 
+        showAlertLogin.classList.remove("hide");
+        setTimeout(() => {
+            showAlertLogin.classList.add("show");
+            showAlertLogin.textContent = `Your Username: ${inputUN.value}`;
+            userDB.user = inputUN.value;
+        }, 200)
+        setTimeout(() => {
+            showAlertLogin.classList.remove("show");
+            setTimeout(() => { showAlertLogin.classList.add("hide"); }, 400)
+        }, 1000)
+    };
+};
+
+inputUN.onkeyup = (e) => {
+    if (inputUN.value == "" || inputUN.value == null || inputUN.value == undefined ) {
+        userDB.user = "Guest";
+    } else { 
+        if (e.key == "Enter") {
+            showAlertLogin.classList.remove("hide");
+            setTimeout(() => {
+                showAlertLogin.classList.add("show");
+                showAlertLogin.textContent = `Your Username: ${inputUN.value}`;
+                userDB.user = inputUN.value;
+            }, 200)
+            setTimeout(() => {
+                showAlertLogin.classList.remove("show");
+                setTimeout(() => { showAlertLogin.classList.add("hide"); }, 400)
+            }, 1000)
+        };
+    };
 };
 
 let timeout = 5000;

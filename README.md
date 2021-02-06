@@ -1,8 +1,13 @@
+
+--Version 0.12
+    fix, input / alert for username
+
+====================================OLD VERSION====================================
+
 --Version 0.11.2
     fix 0.11 problem ( / btnradio not working / btnDisable no change after playing ), little addition
     // readme rework
  
-==================OLD VERSION==================
 --Version 0.11
     End migration, fix, Full work build ("not working game change")
 

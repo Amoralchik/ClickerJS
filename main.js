@@ -1,3 +1,4 @@
+
 let clicks = 1,
     scoreDB = clicks,
     usernameDB = prompt("Your UserName", "unknown user");
@@ -27,14 +28,12 @@ let gameMode = gameModeChenge[gmNum];
 
 let gameModeFunc = () => {
     gmNum += 1;
-    gameMode =  gameModeChenge[gmNum];
-    console.log(gmNum);
-    gameModeSelector.innerHTML = `${gameMode}`;
-    if (gmNum > 2) {
-        gmNum = -1;
+    if (gmNum > 3) {
+        gmNum = 0;
     };
+    gameMode =  gameModeChenge[gmNum];
+    gameModeSelector.innerHTML = `${gameMode}`;
     timeout =  gmNumberFix();
-    console.log(timerout);
 };
 
 gameModeSelector.onclick = gameModeFunc;
@@ -53,6 +52,7 @@ function themeChenge() {
         bodyHtml.classList.add("winter")
         mediaText.classList.add("winter")
         gameModeSelector.classList.add("winter__restart")
+        exitButton.classList.add("winter__restart");
         winterButton.textContent = "Light off";
         themeWinterOn = false;
     } else {
@@ -62,6 +62,7 @@ function themeChenge() {
         bodyHtml.classList.remove("winter")
         mediaText.classList.remove("winter")
         gameModeSelector.classList.remove("winter__restart")
+        exitButton.classList.remove("winter__restart");
         winterButton.textContent = "Light on";
         themeWinterOn = true;
     }
@@ -95,12 +96,17 @@ function  gmNumberFix() {
 function start() {
 
     gameModeSelector.classList.add("hide")
+    gameModeSelector.onclick = null;
 
     const startTime = Date.now();
 
     button.textContent = "Clicker";
 
-    timeDisplay.textContent = formatTime(timeout);
+    if (gmNum != 3) {
+        timeDisplay.textContent = formatTime(timeout);;
+    } else {
+        timeDisplay.textContent = `idle `
+    }
 
     button.onclick = (() => {
         clicks += 1;
@@ -108,43 +114,73 @@ function start() {
         scoreDB = Math.trunc(clicks)
     });
 
-    const interval = setInterval(() => {
-        const delta = Date.now() - startTime;
-        timeDisplay.textContent = formatTime(timeout - delta);
-    }, 100);
-
-    setTimeout(() => {
-        button.onclick = null;
-        timeDisplay.textContent = '';
-        button.textContent = 'Game Over';
-
-        userDB.score = Math.trunc(clicks);
-        scoreTop.push({user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum]});
+    if (gmNum != 3) {
         
-        function sortByAge(arr) {
-            arr.sort((a, b) => a.score < b.score ? 1 : -1);
+        const interval = setInterval(() => {
+            const delta = Date.now() - startTime;
+            timeDisplay.textContent = formatTime(timeout - delta);
+        }, 100);
+
+        setTimeout(() => {
+            button.onclick = null;
+            timeDisplay.textContent = '';
+            button.textContent = 'Game Over';
+
+            endGameDB()
+
+            gameModeSelector.classList.remove("hide")
+            gameModeSelector.onclick = gameModeFunc;
+            restartButton.classList.remove("hide")
+            restartButton.onclick = restart;
+
+            clearInterval(interval);
+            clearTimeout(timeout);
+        }, timeout);
+    } else {
+        const exitButton = document.querySelector('#exitButton');
+        exitButton.classList.remove("hide");
+
+        exitButton.onclick = exitIdle;
+        
+        function exitIdle() {
+            button.onclick = null;
+            button.textContent = 'Game Over';
+
+            exitButton.onclick = null;
+            exitButton.classList.add("hide");
+
+            gameModeSelector.classList.remove("hide")
+            gameModeSelector.onclick = gameModeFunc;
+
+            endGameDB();
+            clearTimeout(timeout);
+            restart();
         }
-        
-        sortByAge(scoreTop)
-
-        counter.innerHTML = '';
-        for (let item = 0; item < scoreTop.length && item < 10; item++) {
-            counter.innerHTML += `
-            <li class="">
-            ${scoreTop[item].user} - score: ${scoreTop[item].score} |
-            Game mode: ${scoreTop[item].game} 
-            </li>`;   
-        };  
-
-        gameModeSelector.classList.remove("hide")
-        restartButton.classList.remove("hide")
-        restartButton.onclick = restart;
-
-        clearInterval(interval);
-        clearTimeout(timeout);
-    }, timeout);
+    };
 }
 
 function formatTime(ms) {
     return Number.parseFloat(ms / 1000).toFixed(2);
+};
+
+function endGameDB() {
+    userDB.score = Math.trunc(clicks);
+    scoreTop.push({user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum]});
+    
+    function sortByAge(arr) {
+        arr.sort((a, b) => a.score < b.score ? 1 : -1);
+    }
+    
+
+    
+    sortByAge(scoreTop)
+
+    counter.innerHTML = '';
+    for (let item = 0; item < scoreTop.length && item < 10; item++) {
+        counter.innerHTML += `
+        <li class="">
+        ${scoreTop[item].user} - score: ${scoreTop[item].score} |
+        Game mode: ${scoreTop[item].game} 
+        </li>`;   
+    };  
 };

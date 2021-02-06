@@ -9,3 +9,6 @@
 
 --Version 0.9.1
     White theme reColor, fix, README.md, Gamemode Selector, Gamemode: 5sec | 10sec | 25sec | idle(wip)
+
+--Version 0.10.1.2
+    Migration to Bootstrap 5, fix, new bag, not working button "restart", WIP build 

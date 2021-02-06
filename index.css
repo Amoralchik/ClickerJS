@@ -90,6 +90,10 @@ li {
 	margin: 20px;
 }
 
+.media__avatar {
+    margin: 0px;
+}
+
 .media__text {
 	font-size: 20px;
 	text-transform: uppercase;

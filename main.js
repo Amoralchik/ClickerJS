@@ -33,29 +33,25 @@ const gameModeChenge = ["Classic", "10sec", "15sec", "idle"];
 let gmNum = 0;
 let gameMode = gameModeChenge[gmNum];
 
-function btnradioChoice() {
-    btnradio1.onclick = () => {
-        gmNum = 0;
-        gameModeFunc();
-    };
-
-    btnradio2.onclick = () => {
-        gmNum = 1;
-        gameModeFunc();
-    };
-
-    btnradio3.onclick = () => {
-        gmNum = 2;
-        gameModeFunc();
-    };
-
-    btnradio4.onclick = () => {
-        gmNum = 3;
-        gameModeFunc();
-    };
+btnradio1.onclick = () => {
+    gmNum = 0;
+    gameModeFunc();
 };
 
-btnradioChoice()
+btnradio2.onclick = () => {
+    gmNum = 1;
+    gameModeFunc();
+};
+
+btnradio3.onclick = () => {
+    gmNum = 2;
+    gameModeFunc();
+};
+
+btnradio4.onclick = () => {
+    gmNum = 3;
+    gameModeFunc();
+};
 
 let gameModeFunc = () => {
     gameMode =  gameModeChenge[gmNum];
@@ -117,8 +113,6 @@ function  gmNumberFix() {
     };
     return timerout;
 };
-
-restartButton.setAttribute("disabled", null);
 
 function start() {
     btnDisable();
@@ -252,13 +246,33 @@ function btnDisable() {
         btnradio4.removeAttribute("disabled");
         btnradio4.onclick = null;
         btnDisableTrue = false;
+        
+        btnradio1.onclick = () => {
+            gmNum = 0;
+            gameModeFunc();
+        };
+        
+        btnradio2.onclick = () => {
+            gmNum = 1;
+            gameModeFunc();
+        };
+        
+        btnradio3.onclick = () => {
+            gmNum = 2;
+            gameModeFunc();
+        };
+        
+        btnradio4.onclick = () => {
+            gmNum = 3;
+            gameModeFunc();
+        };
+        
     } else {
         btnradio1.setAttribute("disabled", null);
         btnradio2.setAttribute("disabled", null);
         btnradio3.setAttribute("disabled", null);
         btnradio4.setAttribute("disabled", null);
         btnDisableTrue = true;
-        btnradioChoice();
     }
 
 };

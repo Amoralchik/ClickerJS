@@ -18,3 +18,6 @@
 
 --Version 0.11
     End migration, fix, Full work build ("maybe///")
+
+--Version 0.11.2
+    fix 0.11 problem ( / btnradio not working / btnDisable no change after playing ), little addition

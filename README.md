@@ -12,3 +12,6 @@
 
 --Version 0.10.1.2
     Migration to Bootstrap 5, fix, new bag, not working button "restart", WIP build 
+
+--Version 0.10.5
+    fix

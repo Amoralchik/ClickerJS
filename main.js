@@ -10,7 +10,9 @@ const userDB = {
 
 let timeout = 5000;
 
-let scoreTop = [];
+let scoreTop1 = [];
+let scoreTop2 = [];
+let scoreTop3 = [];
 
 const display = document.querySelector('#display'),
       timeDisplay = document.querySelector('#time__display')
@@ -19,24 +21,41 @@ const display = document.querySelector('#display'),
       restartButton = document.querySelector('#restart'),
       winterButton = document.querySelector('#winter'),
       bodyHtml = document.querySelector("#body"),
-      mediaText = document.querySelector("#mediaText"),
-      gameModeSelector = document.querySelector("#gameMode");
+      mediaText = document.querySelector("#mediaText");
 
-const gameModeChenge = ["Classic", "10sec", "25sec", "idle"];
+const btnradio1 = document.querySelector("#btnradio1"),
+      btnradio2 = document.querySelector("#btnradio2"),
+      btnradio3 = document.querySelector("#btnradio3"),
+      btnradio4 = document.querySelector("#btnradio4");
+
+const gameModeChenge = ["Classic", "10sec", "15sec", "idle"];
 let gmNum = 0;
 let gameMode = gameModeChenge[gmNum];
 
-let gameModeFunc = () => {
-    gmNum += 1;
-    if (gmNum > 3) {
-        gmNum = 0;
-    };
-    gameMode =  gameModeChenge[gmNum];
-    gameModeSelector.innerHTML = `${gameMode}`;
-    timeout =  gmNumberFix();
+btnradio1.onclick = () => {
+    gmNum = 0;
+    gameModeFunc();
 };
 
-gameModeSelector.onclick = gameModeFunc;
+btnradio2.onclick = () => {
+    gmNum = 1;
+    gameModeFunc();
+};
+
+btnradio3.onclick = () => {
+    gmNum = 2;
+    gameModeFunc();
+};
+
+btnradio4.onclick = () => {
+    gmNum = 3;
+    gameModeFunc();
+};
+
+let gameModeFunc = () => {
+    gameMode =  gameModeChenge[gmNum];
+    timeout =  gmNumberFix();
+};
 
 button.onclick = start;
 
@@ -51,9 +70,8 @@ function themeChenge() {
         button.classList.add("winter__button")
         bodyHtml.classList.add("winter")
         mediaText.classList.add("winter")
-        gameModeSelector.classList.add("winter__restart")
         exitButton.classList.add("winter__restart");
-        winterButton.textContent = "Light off";
+        winterButton.textContent = "LIGHT OFF";
         themeWinterOn = false;
     } else {
         restartButton.classList.remove("winter__restart")
@@ -61,9 +79,8 @@ function themeChenge() {
         button.classList.remove("winter__button")
         bodyHtml.classList.remove("winter")
         mediaText.classList.remove("winter")
-        gameModeSelector.classList.remove("winter__restart")
         exitButton.classList.remove("winter__restart");
-        winterButton.textContent = "Light on";
+        winterButton.textContent = "LIGHT ON";
         themeWinterOn = true;
     }
     
@@ -72,7 +89,7 @@ function themeChenge() {
 function restart() {
     clicks = 1;
     timerout = 5000;
-    restartButton.classList.add("hide")
+    restartButton.setAttribute("disabled", null);
     button.textContent = "Start Game";
     display.textContent = ``;
     button.onclick = start;
@@ -87,16 +104,15 @@ function  gmNumberFix() {
         } else if (gmNum == 1) {
             timerout = 10000;
         } else {
-            timerout = 25000;
+            timerout = 15000;
         }
     };
     return timerout;
 };
 
-function start() {
+restartButton.setAttribute("disabled", null);
 
-    gameModeSelector.classList.add("hide")
-    gameModeSelector.onclick = null;
+function start() {
 
     const startTime = Date.now();
 
@@ -128,9 +144,8 @@ function start() {
 
             endGameDB()
 
-            gameModeSelector.classList.remove("hide")
-            gameModeSelector.onclick = gameModeFunc;
-            restartButton.classList.remove("hide")
+
+            restartButton.removeAttribute("disabled");
             restartButton.onclick = restart;
 
             clearInterval(interval);
@@ -138,7 +153,7 @@ function start() {
         }, timeout);
     } else {
         const exitButton = document.querySelector('#exitButton');
-        exitButton.classList.remove("hide");
+        exitButton.removeAttribute("disabled");
 
         exitButton.onclick = exitIdle;
         
@@ -146,13 +161,11 @@ function start() {
             button.onclick = null;
             button.textContent = 'Game Over';
 
+            timeDisplay.textContent = '';
+
             exitButton.onclick = null;
-            exitButton.classList.add("hide");
+            exitButton.setAttribute("disabled", null);
 
-            gameModeSelector.classList.remove("hide")
-            gameModeSelector.onclick = gameModeFunc;
-
-            endGameDB();
             clearTimeout(timeout);
             restart();
         }
@@ -163,24 +176,50 @@ function formatTime(ms) {
     return Number.parseFloat(ms / 1000).toFixed(2);
 };
 
+function sortTop(arr) {
+    arr.sort((a, b) => a.score < b.score ? 1 : -1);
+}
+
 function endGameDB() {
     userDB.score = Math.trunc(clicks);
-    scoreTop.push({user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum]});
     
-    function sortByAge(arr) {
-        arr.sort((a, b) => a.score < b.score ? 1 : -1);
-    }
-    
+    if (gmNum == 0) {
+        scoreTop1.push({user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum]});
+        
+        sortTop(scoreTop1)
 
-    
-    sortByAge(scoreTop)
+        top1.innerHTML = '';
+        for (let item = 0; item < scoreTop1.length && item < 10; item++) {
+            top1.innerHTML += `
+            <li class="list-group-item bg-transparent">
+            ${item + 1} ${scoreTop1[item].user} - score: ${scoreTop1[item].score}
+            </li>`;   
+        };
+    } 
+    else if (gmNum == 1) {
+        scoreTop2.push({user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum]});
+        
+        sortTop(scoreTop2)
 
-    counter.innerHTML = '';
-    for (let item = 0; item < scoreTop.length && item < 10; item++) {
-        counter.innerHTML += `
-        <li class="">
-        ${scoreTop[item].user} - score: ${scoreTop[item].score} |
-        Game mode: ${scoreTop[item].game} 
-        </li>`;   
-    };  
+        top2.innerHTML = '';
+        for (let item = 0; item < scoreTop2.length && item < 10; item++) {
+            top2.innerHTML += `
+            <li class="list-group-item bg-transparent">
+            ${item} ${scoreTop2[item].user} - score: ${scoreTop2[item].score}
+            </li>`;   
+        };
+    } 
+    else {
+        scoreTop3.push({user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum]});
+        
+        sortTop(scoreTop3)
+
+        top3.innerHTML = '';
+        for (let item = 0; item < scoreTop3.length && item < 10; item++) {
+            top3.innerHTML += `
+            <li class="list-group-item bg-transparent">
+            ${item} ${scoreTop3[item].user} - score: ${scoreTop3[item].score} 
+            </li>`;   
+        };
+    };
 };

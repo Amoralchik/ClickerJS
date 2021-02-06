@@ -15,34 +15,30 @@
             <div class="col align-self-start"></div>
                 <div class="row justify-content-md-center">
                     <div class="col-sm col-md-auto">
-                        <h1 class="text-center toph1" id="time__display"></h1>
-                        <h2 class="text-center toph1" id="display"></h2>
+                        <div class="text-center toph1" id="time__display"></div>
+                        <div class="text-center toph1" id="display"></div>
                         <button type="button" class="btn btn-danger buttonGame rounded-pill " id="button">Start Game</button>
                     </div>
                 </div>
             </div>
             <div class="col mt-2 w-auto">
                 <div class="btn-group justify-content-md-center" role="group">
-                    <button type="button" class="btn btn-primary" id="restart" disabled> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                        <path d="M5.921 11.9L1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                    </svg> restart </button>
-                    <button type="button" class="btn btn-primary" id="winter"> Light on </button>
+                    <button type="button" class="btn btn-primary" id="restart" > RESTART </button>
+                    <button type="button" class="btn btn-primary" id="winter"> LIGHT ON </button>
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="btnradio1" id="gameMode">CLASSIC</label>
+                        <label class="btn btn-outline-primary" for="btnradio1">CLASSIC</label>
 
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                         <label class="btn btn-outline-primary" for="btnradio2">10sec</label>
                         
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio3">25sec</label>
+                        <label class="btn btn-outline-primary" for="btnradio3">15sec</label>
                     
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                         <label class="btn btn-outline-primary" for="btnradio4">idle</label>
                     </div>
-                    <button type="button" class="btn btn-primary" id="exitButton"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                    </svg> </button>
+                    <button type="button" class="btn btn-primary" id="exitButton" disabled> X </button>
                 </div>
             </div>
             <div class="col align-self-end">
@@ -57,10 +53,10 @@
         <div class="row">
             <div class="col-4">
               <div class="list-group " id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action bg-transparent active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-                <a class="list-group-item list-group-item-action bg-transparent" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-                <a class="list-group-item list-group-item-action bg-transparent" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-                <a class="list-group-item list-group-item-action bg-transparent" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+                <a class="list-group-item list-group-item-action bg-primary text-light active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
+                <a class="list-group-item list-group-item-action bg-primary text-light" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                <a class="list-group-item list-group-item-action bg-primary text-light" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+                <a class="list-group-item list-group-item-action bg-primary text-light" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
               </div>
             </div>
             <div class="col-8">
@@ -74,46 +70,44 @@
               </div>
             </div>
         </div>
-        <div class="accordion" id="accordionExample">
+        <div class="accordion mt-2" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  CLASSIC
+                <button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  CLASSIC TOP
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  
+                  <div class="" id="top1"></div>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  10
+                <button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  10 TOP
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  
+                  <div class="" id="top2"></div>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  25
+                <button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  15 TOP
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  
+                  <div class="" id="top3"></div>
                 </div>
               </div>
             </div>
           </div>
-        <h1 class=""> Top 10 </h1>
-        <div class="" id="counter"></div>
     </div>
 
     <div class="footer">
@@ -121,7 +115,7 @@
                 
             <a class="media__a" href="https://github.com/Amoralchik/ClickerJS" target="_blank">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/733/733553.svg" class="media__img" alt="" />
-                <p class="media__text" id="mediaText"> Version: 0.10.1.2 </p>
+                <p class="media__text" id="mediaText"> Version: 0.10.5 </p>
             </a>
 
             <p class="media__text"> CREATED & DESIGNED BY AMORALCHIK </p>

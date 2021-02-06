@@ -38,8 +38,13 @@ body {
 }
 
 .toph1 {
+    text-align: center;
     font-size: .55rem;
     margin-bottom: 10px;
+}
+
+li {
+    list-style-type: decimal;
 }
 
 /*button --------------------------------------------------------*/
@@ -97,22 +102,6 @@ body {
 .winter {
     background-color: #F2F8F8;
     color:  #000000;
-}
-
-.winter__button {
-    --color: #5A6886;
-    --border-color: #5A6886;
-    --shadow-color:#2B2E3B;
-
-    color: #000000;
-}
-
-.winter__restart {
-    --color:#7A84A3;
-    --border-color:#7A84A3;
-    --shadow-color:#2B2E3B;
-
-    color: #000000;
 }
 
 /* other --------------------------------------------------------*/

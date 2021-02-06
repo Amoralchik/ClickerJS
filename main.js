@@ -21,7 +21,8 @@ const display = document.querySelector('#display'),
       restartButton = document.querySelector('#restart'),
       winterButton = document.querySelector('#winter'),
       bodyHtml = document.querySelector("#body"),
-      mediaText = document.querySelector("#mediaText");
+      mediaText = document.querySelector("#mediaText"),
+      idleCol4 = document.querySelector("#idleCol4");
 
 const btnradio1 = document.querySelector("#btnradio1"),
       btnradio2 = document.querySelector("#btnradio2"),
@@ -32,25 +33,29 @@ const gameModeChenge = ["Classic", "10sec", "15sec", "idle"];
 let gmNum = 0;
 let gameMode = gameModeChenge[gmNum];
 
-btnradio1.onclick = () => {
-    gmNum = 0;
-    gameModeFunc();
+function btnradioChoice() {
+    btnradio1.onclick = () => {
+        gmNum = 0;
+        gameModeFunc();
+    };
+
+    btnradio2.onclick = () => {
+        gmNum = 1;
+        gameModeFunc();
+    };
+
+    btnradio3.onclick = () => {
+        gmNum = 2;
+        gameModeFunc();
+    };
+
+    btnradio4.onclick = () => {
+        gmNum = 3;
+        gameModeFunc();
+    };
 };
 
-btnradio2.onclick = () => {
-    gmNum = 1;
-    gameModeFunc();
-};
-
-btnradio3.onclick = () => {
-    gmNum = 2;
-    gameModeFunc();
-};
-
-btnradio4.onclick = () => {
-    gmNum = 3;
-    gameModeFunc();
-};
+btnradioChoice()
 
 let gameModeFunc = () => {
     gameMode =  gameModeChenge[gmNum];
@@ -86,12 +91,15 @@ function themeChenge() {
     
 };
 
+timeDisplay.textContent = '0:00';
+display.textContent = `CLICKS: 0`;
+
 function restart() {
     clicks = 1;
     timerout = 5000;
     restartButton.setAttribute("disabled", null);
-    button.textContent = "Start Game";
-    display.textContent = ``;
+    button.textContent = "START GAME";
+    display.textContent = `CLICKS: 0`;
     button.onclick = start;
     restartButton.onclick = false;
 };
@@ -113,20 +121,21 @@ function  gmNumberFix() {
 restartButton.setAttribute("disabled", null);
 
 function start() {
+    btnDisable();
 
     const startTime = Date.now();
 
-    button.textContent = "Clicker";
+    button.textContent = "CLICK";
 
     if (gmNum != 3) {
         timeDisplay.textContent = formatTime(timeout);;
     } else {
-        timeDisplay.textContent = `idle `
+        timeDisplay.textContent = `IDLE`
     }
 
     button.onclick = (() => {
         clicks += 1;
-        display.textContent = ` Clicks: ${Math.trunc(clicks)}`;
+        display.textContent = ` CLICKS: ${Math.trunc(clicks)}`;
         scoreDB = Math.trunc(clicks)
     });
 
@@ -139,12 +148,12 @@ function start() {
 
         setTimeout(() => {
             button.onclick = null;
-            timeDisplay.textContent = '';
-            button.textContent = 'Game Over';
+            timeDisplay.textContent = '0:00';
+            button.textContent = 'GAME OVER';
 
             endGameDB()
 
-
+            btnDisable()
             restartButton.removeAttribute("disabled");
             restartButton.onclick = restart;
 
@@ -152,17 +161,23 @@ function start() {
             clearTimeout(timeout);
         }, timeout);
     } else {
+
+        idleCol4.classList.remove("hide");
+
         const exitButton = document.querySelector('#exitButton');
         exitButton.removeAttribute("disabled");
 
         exitButton.onclick = exitIdle;
         
         function exitIdle() {
-            button.onclick = null;
-            button.textContent = 'Game Over';
+            idleCol4.classList.add("hide");
 
+            button.onclick = null;
+            button.textContent = 'GAME OVER';
+            
             timeDisplay.textContent = '';
 
+            btnDisable()
             exitButton.onclick = null;
             exitButton.setAttribute("disabled", null);
 
@@ -191,8 +206,8 @@ function endGameDB() {
         top1.innerHTML = '';
         for (let item = 0; item < scoreTop1.length && item < 10; item++) {
             top1.innerHTML += `
-            <li class="list-group-item bg-transparent">
-            ${item + 1} ${scoreTop1[item].user} - score: ${scoreTop1[item].score}
+            <li class="list-group-item bg-transparent text-uppercase">
+            ${item + 1}. ${scoreTop1[item].user} - score: ${scoreTop1[item].score}
             </li>`;   
         };
     } 
@@ -204,8 +219,8 @@ function endGameDB() {
         top2.innerHTML = '';
         for (let item = 0; item < scoreTop2.length && item < 10; item++) {
             top2.innerHTML += `
-            <li class="list-group-item bg-transparent">
-            ${item} ${scoreTop2[item].user} - score: ${scoreTop2[item].score}
+            <li class="list-group-item bg-transparent text-uppercase">
+            ${item  + 1}. ${scoreTop2[item].user} - score: ${scoreTop2[item].score}
             </li>`;   
         };
     } 
@@ -217,9 +232,33 @@ function endGameDB() {
         top3.innerHTML = '';
         for (let item = 0; item < scoreTop3.length && item < 10; item++) {
             top3.innerHTML += `
-            <li class="list-group-item bg-transparent">
-            ${item} ${scoreTop3[item].user} - score: ${scoreTop3[item].score} 
+            <li class="list-group-item bg-transparent text-uppercase">
+            ${item  + 1}. ${scoreTop3[item].user} - score: ${scoreTop3[item].score} 
             </li>`;   
         };
     };
+};
+
+let btnDisableTrue = false;
+
+function btnDisable() {
+    if (btnDisableTrue) {
+        btnradio1.removeAttribute("disabled");
+        btnradio1.onclick = null;
+        btnradio2.removeAttribute("disabled");
+        btnradio2.onclick = null;
+        btnradio3.removeAttribute("disabled");
+        btnradio3.onclick = null;
+        btnradio4.removeAttribute("disabled");
+        btnradio4.onclick = null;
+        btnDisableTrue = false;
+    } else {
+        btnradio1.setAttribute("disabled", null);
+        btnradio2.setAttribute("disabled", null);
+        btnradio3.setAttribute("disabled", null);
+        btnradio4.setAttribute("disabled", null);
+        btnDisableTrue = true;
+        btnradioChoice();
+    }
+
 };

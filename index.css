@@ -2,7 +2,7 @@
 /* Main --------------------------------------------------------*/
 
 html {
-    font-family: 'Press Start 2P';
+    font-family: 'Bebas Neue';
     font-size: 2rem;
 }
 
@@ -39,7 +39,7 @@ body {
 
 .toph1 {
     text-align: center;
-    font-size: .55rem;
+    font-size: 1.7rem;
     margin-bottom: 10px;
 }
 
@@ -51,6 +51,7 @@ li {
 .buttonGame {
     position: relative;
     font-size: .75rem;
+    margin-top: 15px;
     width: 200px;
     height: 75px;
 }
@@ -123,5 +124,5 @@ li {
 #display,
 #time__display,
 #counter {
-    height: 32px;
+    height: 52px;
 }

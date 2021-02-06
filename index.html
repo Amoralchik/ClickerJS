@@ -3,26 +3,28 @@
 <head>
     <title>Clicker</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </head>
 <body id="body">
     <main class="container">
         <div class="row justify-content-center">
             <div class="col align-self-start"></div>
                 <div class="row justify-content-md-center">
-                    <div class="col-sm col-md-auto">
-                        <div class="text-center toph1" id="time__display"></div>
-                        <div class="text-center toph1" id="display"></div>
-                        <button type="button" class="btn btn-danger buttonGame rounded-pill " id="button">Start Game</button>
+                    <div class="col-sm col-md-auto row justify-content-md-center">
+                        <div class="row justify-content-md-center border border-1 rounded-pill border-primary bg-primary mt-1">
+                          <h1 class="fs-4 text-center toph1 text-white" id="time__display"></h1>
+                          <h1 class="fs-4 text-center toph1 text-white" id="display"></h1>
+                        </div>
+                        <button type="button" class="btn btn-danger buttonGame rounded-pill" id="button">START GAME</button>
                     </div>
                 </div>
             </div>
-            <div class="col mt-2 w-auto">
-                <div class="btn-group justify-content-md-center" role="group">
+            <div class="row justify-content-md-center col mt-2">
+                <div class="btn-group " role="group">
                     <button type="button" class="btn btn-primary" id="restart" > RESTART </button>
                     <button type="button" class="btn btn-primary" id="winter"> LIGHT ON </button>
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -30,13 +32,13 @@
                         <label class="btn btn-outline-primary" for="btnradio1">CLASSIC</label>
 
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio2">10sec</label>
+                        <label class="btn btn-outline-primary" for="btnradio2">10SEC</label>
                         
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio3">15sec</label>
+                        <label class="btn btn-outline-primary" for="btnradio3">15SEC</label>
                     
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio4">idle</label>
+                        <label class="btn btn-outline-primary" for="btnradio4">IDLE</label>
                     </div>
                     <button type="button" class="btn btn-primary" id="exitButton" disabled> X </button>
                 </div>
@@ -50,7 +52,7 @@
     </main>
 
     <div class="container mt-2">
-        <div class="row">
+        <div class="row hide" id="idleCol4">
             <div class="col-4">
               <div class="list-group " id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action bg-primary text-light active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
@@ -115,14 +117,15 @@
                 
             <a class="media__a" href="https://github.com/Amoralchik/ClickerJS" target="_blank">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/733/733553.svg" class="media__img" alt="" />
-                <p class="media__text" id="mediaText"> Version: 0.10.5 </p>
+                <p class="media__text" id="mediaText"> Version: 0.11 </p>
             </a>
 
-            <p class="media__text"> CREATED & DESIGNED BY AMORALCHIK </p>
+            <h1 class="media__text"> © CREATED & DESIGNED BY AMORALCHIK </h1>
 
         </div>
     </div>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="../clikerR/main.js"></script>
 </body>
 </html>

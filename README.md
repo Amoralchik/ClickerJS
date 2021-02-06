@@ -15,3 +15,6 @@
 
 --Version 0.10.5
     fix
+
+--Version 0.11
+    End migration, fix, Full work build ("maybe///")

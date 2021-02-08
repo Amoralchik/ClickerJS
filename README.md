@@ -1,4 +1,7 @@
 
+--Version 0.15.1.9
+    hotfix, upgrade system fix, btn dualclick fix, Price freeze fix
+
 --Version 0.15.1.8
     fix, reDesigned, first IDLE Update
     

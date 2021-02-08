@@ -261,17 +261,15 @@ function start() {
             clicksResult = clicks ;
             display.textContent = ` CLICKS: ${clicksResult}`;
             scoreDB = clicksResult;
+            console.log(clicksUpdateCost);
             clicksUpdateUpdata();
         });
         
-        listBtn1.onclick = () => { clicksUpdateUpdata() }
         listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
 
         let btnUpdataNum = 0;
 
         function clicksUpdateUpdata() {
-
-            console.log(btnUpdataNum)
 
             const listBtnUpdataChenge = ["1", "10", "100"];
 
@@ -279,53 +277,80 @@ function start() {
                 btnUpdataNum = 0;
                 UpdateCostNum = clicksUpdateCost;
                 listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
-                console.log(UpdateCostNum);
                 btnUpdataFunc();
                 UpdateCostFunc();
             };
-        
-            listBtn2.onclick = () => {
-                btnUpdataNum = 0;
-                UpdateCostNum = clicksUpdateCost;
-                listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
-                console.log(UpdateCostNum);
-                btnUpdataFunc();
-                UpdateCostFunc();
-            };
-            listBtn3.onclick = () => {
-                listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 10}`;
-                btnUpdataNum = 1;
-                UpdateCostNum = (clicksUpdateCost * 10);
-                btnUpdataFunc();
-                UpdateCostFunc();
-            };
-            listBtn4.onclick = () => {
-                listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 100}`;
-                btnUpdataNum = 2;
-                UpdateCostNum = (clicksUpdateCost * 100);
-                btnUpdataFunc();
-                UpdateCostFunc();
-            };
+            
+            function listBtnFunc() {
+                listBtn2.onclick = () => {
+                    btnUpdataNum = 0;
+                    UpdateCostNum = clicksUpdateCost;
+                    listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
+                    btnUpdataFunc();
+                    UpdateCostFunc();
+                };
+                listBtn3.onclick = () => {
+                    btnUpdataNum = 1;
+                    UpdateCostNum = (clicksUpdateCost * 10);
+                    listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 10}`;
+                    btnUpdataFunc();
+                    UpdateCostFunc();
+                };
+                listBtn4.onclick = () => {
+                    btnUpdataNum = 2;
+                    UpdateCostNum = (clicksUpdateCost * 100);
+                    listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 100}`;
+                    btnUpdataFunc();
+                    UpdateCostFunc();
+                };
+
+                if (btnUpdataNum == 0 || btnUpdataNum == 1 || btnUpdataNum == 2) {
+                    if (btnUpdataNum == 0) {
+                        btnUpdataNum = 0;
+                        UpdateCostNum = clicksUpdateCost;
+                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
+                        btnUpdataFunc();
+                        UpdateCostFunc();
+                    }
+                    else if (btnUpdataNum == 1) {
+                        btnUpdataNum = 1;
+                        UpdateCostNum = (clicksUpdateCost * 10);
+                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 10}`;
+                        btnUpdataFunc();
+                        UpdateCostFunc();
+                    }
+                    else {
+                        btnUpdataNum = 2;
+                        UpdateCostNum = (clicksUpdateCost * 100);
+                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 100}`;
+                        btnUpdataFunc();
+                        UpdateCostFunc();
+                    };
+                };
+            }
+
+            listBtnFunc();
 
             function UpdateCostFunc() {
                 if (clicks >= UpdateCostNum) {
                     listBtn1.removeAttribute('disabled');
-                    listBtn1.onclick = () => {    
-                        if (btnUpdataNum == 0 || btnUpdataNum == 1 || btnUpdataNum == 2) {
-                            listBtn1.onclick = () => {
-                                clicksBonus += 1;
-                                clicks =  clicks - UpdateCostNum;
-                                UpdateCostNum += clicksBonus;
-                                clicksUpdateCost = UpdateCostNum;
-                                UpdateCostNum = clicksUpdateCost;
-                                display.textContent = ` CLICKS: ${clicks}`;
-                                listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
-                                console.log(clicksUpdateCost);
-                                clicksUpdateUpdata();
-                                btnUpdataFunc();
-                                UpdateCostFunc();
-                            };
-                        };
+                    listBtn1.onclick = () => {   
+                        
+                        if (btnUpdataNum == 0) { clicksBonus += 1; }
+                        else if (btnUpdataNum == 1) { clicksBonus += 10; }
+                        else { clicksBonus += 100; };
+
+                        clicks =  clicks - UpdateCostNum;
+                        UpdateCostNum += clicksBonus;
+                        clicksUpdateCost = UpdateCostNum;
+                        UpdateCostNum = clicksUpdateCost;
+                        display.textContent = ` CLICKS: ${clicks}`;
+                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
+                        console.log(clicksUpdateCost);
+                        clicksUpdateUpdata();
+                        btnUpdataFunc();
+                        UpdateCostFunc();
+                        listBtnFunc();
                     };
                 } 
                 else {

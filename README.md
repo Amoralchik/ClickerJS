@@ -1,8 +1,11 @@
 
+--Version 0.15.1.8
+    fix, reDesigned, first IDLE Update
+    
+===============================OLD VERSION===============================
+
 --Version 0.12
     fix, input / alert for username
-
-====================================OLD VERSION====================================
 
 --Version 0.11.2
     fix 0.11 problem ( / btnradio not working / btnDisable no change after playing ), little addition

@@ -1,4 +1,6 @@
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
 /* Main --------------------------------------------------------*/
 
 html {
@@ -49,11 +51,18 @@ li {
 
 /*button --------------------------------------------------------*/
 .buttonGame {
+    min-width: 600px;
+}
+
+.buttonRestart {
     position: relative;
-    font-size: .75rem;
     margin-top: 15px;
-    width: 200px;
+    width: 75px;
     height: 75px;
+}
+
+.btn_iconStyle {
+    text-align: center;
 }
 
 /*media --------------------------------------------------------*/
@@ -109,6 +118,10 @@ li {
 }
 
 /* other --------------------------------------------------------*/
+
+.text__Transform{
+    text-transform: uppercase;
+}
 
 .shellHide {
     -webkit-user-select: none;

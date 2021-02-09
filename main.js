@@ -201,11 +201,11 @@ function start() {
     if (gmNum != 3) {
         timeDisplay.textContent = formatTime(timeout);;
     } else {
-        timeDisplay.textContent = `IDLE`
+        timeDisplay.textContent = `GEMS PER SECOND: 0`;
     }
 
     button.onclick = (() => {
-        clicks += 1 + clicksBonus;
+        clicks += 1;
         clicksResult = clicks ;
         display.textContent = ` CLICKS: ${clicksResult}`;
         scoreDB = clicksResult;
@@ -234,6 +234,8 @@ function start() {
         }, timeout);
     } else {
 
+        // timeDisplay.textContent = `GEMS PER SECOND: `;
+
         button.onclick = null;
 
         idleCol3.classList.add("hide");
@@ -250,24 +252,58 @@ function start() {
               listBtn2 = document.querySelector('#list-btn-2'),
               listBtn3 = document.querySelector('#list-btn-3'),
               listBtn4 = document.querySelector('#list-btn-4');
+              listBtn5 = document.querySelector('#list-btn-5');
 
         listBtn1.setAttribute('disabled', null);
+        listBtn5.setAttribute('disabled', null);
       
         let clicksUpdateCost = 100;
         let UpdateCostNum;
 
         button.onclick = (() => {
             clicks += 1 + clicksBonus;
-            clicksResult = clicks ;
-            display.textContent = ` CLICKS: ${clicksResult}`;
+            clicksResult = clicks;
+            display.textContent = ` GEMS: ${clicksResult}`;
             scoreDB = clicksResult;
-            console.log(clicksUpdateCost);
             clicksUpdateUpdata();
+            gamsMine();
         });
         
         listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
 
         let btnUpdataNum = 0;
+
+        let updateGemsMineCostNum = 1000;
+        listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
+
+        let clicksGemsMine = 0;
+
+        function gamsMine() {
+            if (clicks >= updateGemsMineCostNum) {
+                listBtn5.removeAttribute('disabled');
+                listBtn5.onclick = () => {
+                    clicksGemsMine += 1;
+                    clicks = clicks - updateGemsMineCostNum;
+                    updateGemsMineCostNum = Math.ceil(updateGemsMineCostNum * 1.25);
+                    listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
+                    timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
+                    display.textContent = `GEMS: ${clicks}`;
+                    clicksUpdateUpdata();
+                    gamsMine();
+                };
+            } else {
+                listBtn5.setAttribute('disabled', null);
+            };
+        };
+
+        setInterval(() => {
+            clicks += clicksGemsMine;
+            clicksResult = clicks;
+            timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
+            display.textContent = `GEMS: ${clicksResult}`;
+        }, 1000)
+
+        let clicksOnUpdate = 0
 
         function clicksUpdateUpdata() {
 
@@ -276,7 +312,7 @@ function start() {
             if (btnUpdataNum == 0) {
                 btnUpdataNum = 0;
                 UpdateCostNum = clicksUpdateCost;
-                listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
+                listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                 btnUpdataFunc();
                 UpdateCostFunc();
             };
@@ -285,21 +321,21 @@ function start() {
                 listBtn2.onclick = () => {
                     btnUpdataNum = 0;
                     UpdateCostNum = clicksUpdateCost;
-                    listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
+                    listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
                 listBtn3.onclick = () => {
                     btnUpdataNum = 1;
                     UpdateCostNum = (clicksUpdateCost * 10);
-                    listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 10}`;
+                    listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
                 listBtn4.onclick = () => {
                     btnUpdataNum = 2;
                     UpdateCostNum = (clicksUpdateCost * 100);
-                    listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 100}`;
+                    listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
@@ -308,21 +344,21 @@ function start() {
                     if (btnUpdataNum == 0) {
                         btnUpdataNum = 0;
                         UpdateCostNum = clicksUpdateCost;
-                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
+                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                         btnUpdataFunc();
                         UpdateCostFunc();
                     }
                     else if (btnUpdataNum == 1) {
                         btnUpdataNum = 1;
                         UpdateCostNum = (clicksUpdateCost * 10);
-                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 10}`;
+                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                         btnUpdataFunc();
                         UpdateCostFunc();
                     }
                     else {
                         btnUpdataNum = 2;
                         UpdateCostNum = (clicksUpdateCost * 100);
-                        listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost * 100}`;
+                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                         btnUpdataFunc();
                         UpdateCostFunc();
                     };
@@ -334,23 +370,37 @@ function start() {
             function UpdateCostFunc() {
                 if (clicks >= UpdateCostNum) {
                     listBtn1.removeAttribute('disabled');
-                    listBtn1.onclick = () => {   
+                    listBtn1.onclick = () => {  
                         
-                        if (btnUpdataNum == 0) { clicksBonus += 1; }
-                        else if (btnUpdataNum == 1) { clicksBonus += 10; }
-                        else { clicksBonus += 100; };
+                        if (btnUpdataNum == 0) { 
+                            clicksBonus += 1; 
+                            clicksOnUpdate += 1;
+                            clicksUpdateCost += clicksBonus;
+                        }
+                        else if (btnUpdataNum == 1) {  
+                            clicksOnUpdate += 10;
+                            for (let index = 0; index < 10; index++) {
+                                clicksBonus += 1;
+                                clicksUpdateCost += clicksBonus;  
+                            }
+                        }
+                        else { 
+                            clicksOnUpdate += 100;
+                            for (let index = 0; index < 100; index++) {
+                                clicksBonus += 1;
+                                clicksUpdateCost += clicksBonus;  
+                            }
+                        };
 
                         clicks =  clicks - UpdateCostNum;
-                        UpdateCostNum += clicksBonus;
-                        clicksUpdateCost = UpdateCostNum;
                         UpdateCostNum = clicksUpdateCost;
-                        display.textContent = ` CLICKS: ${clicks}`;
+                        display.textContent = ` GEMS: ${clicks}`;
                         listBtn1.textContent = ` Buy Upgrade: ${clicksUpdateCost}`;
-                        console.log(clicksUpdateCost);
                         clicksUpdateUpdata();
                         btnUpdataFunc();
                         UpdateCostFunc();
                         listBtnFunc();
+                        gamsMine();
                     };
                 } 
                 else {
@@ -374,7 +424,7 @@ function start() {
             button.onclick = null;
             button.textContent = 'GAME OVER';
             
-            timeDisplay.textContent = '';
+            timeDisplay.textContent = '0:00';
 
             btnDisable()
             exitButton.onclick = null;

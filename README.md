@@ -1,4 +1,7 @@
 
+--Version 0.15.3
+    fix, price x10 - x100 fix, added new functionality to the section business
+
 --Version 0.15.1.9
     hotfix, upgrade system fix, btn dualclick fix, Price freeze fix
 

@@ -10,14 +10,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body id="body">
+<body class="shellHide" id="body">
   <main class="container shadow-lg p-3 mb-5 mt-5 rounded">
     <div class="row justify-content-center">
       <div class="row justify-content-md-center">
         <div class="col-sm col-md-auto row justify-content-md-center">
-          <div class="row justify-content-md-center border border-1 rounded-pill border-primary bg-primary mt-1">
-            <h1 class="fs-4 text-center toph1 text-white" id="time__display"></h1>
-            <h1 class="fs-4 text-center toph1 text-white" id="display"></h1>
+          <div class="row justify-content-md-center mt-1">
+            <h1 class="fs-4 text-center toph1 text-primary" id="time__display"></h1>
+            <h1 class="fs-4 text-center toph1 text-primary" id="display"></h1>
           </div>
           <div class="btn-group btn-group-lg m-2" role="group">
             <button type="button" class="btn btn-danger btn-lg w-100 buttonGame fs-2 text-wrap" id="button">START GAME</button>
@@ -77,7 +77,9 @@
               <label class="btn btn-outline-primary" for="list-btn-4">100</label>
             </div>
           </div>
-          <div class="tab-pane fade" id="list-business" role="tabpanel" aria-labelledby="list-business-list">...</div>
+          <div class="tab-pane fade" id="list-business" role="tabpanel" aria-labelledby="list-business-list">
+            <button class="btn btn-outline-secondary m-1" id="list-btn-5" type="button">1 GEM PER SECOND</button>
+          </div>
           <div class="tab-pane fade" id="list-statistic" role="tabpanel" aria-labelledby="list-statistic-list">...</div>
           <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
         </div>
@@ -144,7 +146,7 @@
     <div class="media__block">
       <a class="media__a" href="https://github.com/Amoralchik/ClickerJS" target="_blank">
         <img src="https://www.flaticon.com/svg/static/icons/svg/733/733553.svg" class="media__img" alt="" />
-        <p class="media__text" id="mediaText"> Version: 0.15.1.9 </p>
+        <p class="media__text" id="mediaText"> Version: 0.15.3 </p>
       </a>
       <div class="media__a ms-2">
         <img src="https://avatars.githubusercontent.com/u/26862281?s=460&u=c289328c250b94789a50283570cd84a8b6a5eb3d&v=4" class="media__img media__avatar rounded-circle" alt="" />

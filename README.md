@@ -1,4 +1,9 @@
 
+--Version: 0.15.4.1
+
+--Hotfix 0.15.4.0
+    fix price again
+
 --Version: 0.15.3.8
     fix, fix price again, wip MAX button, not work lock button(wip) 
 

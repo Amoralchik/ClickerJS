@@ -318,7 +318,8 @@ function start() {
         }, 1000)
 
         let clicksOnUpdate = 0;
-        let clicksUpdateNum = 0;
+        let clicksUpdateNum100 = 0;
+        let clicksUpdateNum10 = 0;
         let btnUpgIdBool = true;
         let indexClicksGlobal = 0;
 
@@ -326,8 +327,11 @@ function start() {
 
             indexClicksGlobal = letbiHight();
 
-            if (clicksUpdateNum >= 100) {
-                clicksUpdateNum = 0
+            if (clicksUpdateNum100 >= 100) {
+                clicksUpdateNum100 = 0
+            };
+            if (clicksUpdateNum10 >= 10) {
+                clicksUpdateNum10 = 0
             };
 
             PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksOnUpdate} `;
@@ -368,7 +372,6 @@ function start() {
                 btnUpgId[3].onclick = () => {
                     btnUpdataNum = 3;
                     UpdateCostNum = UpdateCostNumFix(indexClicksGlobal);
-                    console.log(UpdateCostNum);
                     listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum} per: ${indexClicksGlobal}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
@@ -426,22 +429,21 @@ function start() {
                         
                         if (btnUpdataNum == 0) {
                             clicksOnUpdate += 1;
-                            clicksUpdateNum += 1;
+                            clicksUpdateNum10 += 1;
+                            clicksUpdateNum100 += 1;
                             UpdateCostNumFix(1, false);
                         }
                         else if (btnUpdataNum == 1) {  
                             clicksOnUpdate += 10;
-                            clicksUpdateNum += 10;
+                            clicksUpdateNum100 += 10;
                             UpdateCostNumFix(10, false);
                         }
                         else if (btnUpdataNum == 2) { 
                             clicksOnUpdate += 100;
-                            clicksUpdateNum += 100;
                             UpdateCostNumFix(100, false);
                         }
                         else {
                             clicksOnUpdate += indexClicksGlobal;
-                            clicksUpdateNum += indexClicksGlobal;
                             UpdateCostNumFix(indexClicksGlobal, false);
                         };
 
@@ -464,21 +466,40 @@ function start() {
                     if (btnUpgIdBool) {
                         return funcUpdateCost(2, argNum);
                     } else {
-                        return funcUpdateCost(2, argNum, clicksUpdateNum, false);
+                        if ( btnUpdataNum == 0 || btnUpdataNum == 1 ) {
+                            return funcUpdateCost(2, argNum, clicksUpdateNum10, 10 , false);
+                        }
+                        else {
+                            return funcUpdateCost(2, argNum, clicksUpdateNum100, 100 , false);
+                        };
                     };
                 } else {
                     if (btnUpgIdBool) {
                         return funcUpdateCost(1, argNum);
                     } else {
-                        return funcUpdateCost(1, argNum, clicksUpdateNum, false);
+                        if ( btnUpdataNum == 0 || btnUpdataNum == 1 ) {
+                            return funcUpdateCost(1, argNum, clicksUpdateNum10, 10 , false);
+                        }
+                        else {
+                            return funcUpdateCost(1, argNum, clicksUpdateNum100, 100 , false);
+                        };
                     };
                 }
             }
 
-            function funcUpdateCost(argMode, argNumb, arg2Numb = 0, argModeTwo = 1) {
+            function funcUpdateCost(argMode, argNumb, arg2Numb = 0, arg10or100 = 0 , argModeTwo = true) {
                 
-                let argToNumb = argNumb - arg2Numb;
-                //console.log(argToNumb);
+                let argToNumb;
+
+                if (arg2Numb == 0) {
+                    argToNumb = 0
+                };
+
+                if (arg10or100 == 10) {
+                    argToNumb = 10 - arg2Numb;
+                } else if ( arg10or100 == 100) {
+                    argToNumb = 100 - arg2Numb;
+                };
 
                 if (argMode == 1) {
                     if (argModeTwo) {
@@ -490,7 +511,6 @@ function start() {
                         for (let index = 0; index < argToNumb; index++) {
                             clicksBonus += 1;
                             clicksUpdateCost += clicksBonus;
-                            console.log(argToNumb);
                         };
                     };
 
@@ -520,6 +540,7 @@ function start() {
                             };
                             newUpdateReCost += newClicksBonus;  
                         };
+                        // console.log(`${argToNumb} : 2`)
                     };
 
                     return newUpdateCost;

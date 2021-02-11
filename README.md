@@ -1,4 +1,7 @@
 
+--Version: 0.15.3.8
+    fix, fix price again, wip MAX button, not work lock button(wip) 
+
 --Version 0.15.3
     fix, price x10 - x100 fix, added new functionality to the section business
 

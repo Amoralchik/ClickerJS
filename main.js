@@ -249,10 +249,12 @@ function start() {
         exitButton.onclick = exitIdle;
         
         const listBtn1 = document.querySelector('#list-btn-1'),
-              listBtn2 = document.querySelector('#list-btn-2'),
-              listBtn3 = document.querySelector('#list-btn-3'),
-              listBtn4 = document.querySelector('#list-btn-4');
               listBtn5 = document.querySelector('#list-btn-5');
+
+        const btnIdGroupUpg = document.querySelector("#btnIdGroupUpg"),
+              btnUpgId = btnIdGroupUpg.querySelectorAll("input");
+        
+        const PlabelUpgrade = document.querySelector("#PlabelUpgrade");
 
         listBtn1.setAttribute('disabled', null);
         listBtn5.setAttribute('disabled', null);
@@ -277,6 +279,7 @@ function start() {
         listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
 
         let clicksGemsMine = 0;
+        PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksGemsMine} `;
 
         function gamsMine() {
             if (clicks >= updateGemsMineCostNum) {
@@ -284,7 +287,7 @@ function start() {
                 listBtn5.onclick = () => {
                     clicksGemsMine += 1;
                     clicks = clicks - updateGemsMineCostNum;
-                    updateGemsMineCostNum = Math.ceil(updateGemsMineCostNum * 1.25);
+                    updateGemsMineCostNum = Math.ceil(updateGemsMineCostNum * 1.1);
                     listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
                     timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
                     display.textContent = `GEMS: ${clicks}`;
@@ -297,15 +300,22 @@ function start() {
         };
 
         setInterval(() => {
-            clicks += clicksGemsMine;
-            clicksResult = clicks;
-            timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
-            display.textContent = `GEMS: ${clicksResult}`;
+            if (gmNum == 3) {
+                clicks += clicksGemsMine;
+                clicksResult = clicks;
+                timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
+                display.textContent = `GEMS: ${clicksResult}`;
+                gamsMine();
+                clicksUpdateUpdata();
+            };
         }, 1000)
 
-        let clicksOnUpdate = 0
+        let clicksOnUpdate = 0;
+        let indexClicksGlobal = 0;
+        let indexUpdataCostGlobal = 0;
 
         function clicksUpdateUpdata() {
+            PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksOnUpdate} `;
 
             const listBtnUpdataChenge = ["1", "10", "100"];
 
@@ -318,29 +328,36 @@ function start() {
             };
             
             function listBtnFunc() {
-                listBtn2.onclick = () => {
+                btnUpgId[0].onclick = () => {
                     btnUpdataNum = 0;
                     UpdateCostNum = clicksUpdateCost;
                     listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
-                listBtn3.onclick = () => {
+                btnUpgId[1].onclick = () => {
                     btnUpdataNum = 1;
-                    UpdateCostNum = (clicksUpdateCost * 10);
+                    UpdateCostNum = funcUpdateCost(2, 10);
                     listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
-                listBtn4.onclick = () => {
+                btnUpgId[2].onclick = () => {
                     btnUpdataNum = 2;
-                    UpdateCostNum = (clicksUpdateCost * 100);
+                    UpdateCostNum = funcUpdateCost(2, 100);
+                    listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
+                    btnUpdataFunc();
+                    UpdateCostFunc();
+                };
+                btnUpgId[3].onclick = () => {
+                    btnUpdataNum = 3;
+                    letbiHight(clicksUpdateCost);
                     listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
 
-                if (btnUpdataNum == 0 || btnUpdataNum == 1 || btnUpdataNum == 2) {
+                if (btnUpdataNum == 0 || btnUpdataNum == 1 || btnUpdataNum == 2 || btnUpdataNum == 3) {
                     if (btnUpdataNum == 0) {
                         btnUpdataNum = 0;
                         UpdateCostNum = clicksUpdateCost;
@@ -350,15 +367,23 @@ function start() {
                     }
                     else if (btnUpdataNum == 1) {
                         btnUpdataNum = 1;
-                        UpdateCostNum = (clicksUpdateCost * 10);
+                        UpdateCostNum = funcUpdateCost(2, 10);
+                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
+                        btnUpdataFunc();
+                        UpdateCostFunc();
+                    }
+                    else if (btnUpdataNum == 2) {
+                        btnUpdataNum = 2;
+                        UpdateCostNum = funcUpdateCost(2, 100);
                         listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
                         btnUpdataFunc();
                         UpdateCostFunc();
                     }
                     else {
-                        btnUpdataNum = 2;
-                        UpdateCostNum = (clicksUpdateCost * 100);
-                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum}`;
+                        btnUpdataNum = 3;
+                        letbiHight(clicksUpdateCost);
+                        UpdateCostNum = (indexUpdataCostGlobal * indexClicksGlobal);
+                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum} for ${indexClicksGlobal}`;
                         btnUpdataFunc();
                         UpdateCostFunc();
                     };
@@ -372,21 +397,22 @@ function start() {
                     listBtn1.removeAttribute('disabled');
                     listBtn1.onclick = () => {  
                         
-                        if (btnUpdataNum == 0) { 
+                        if (btnUpdataNum == 0) {
                             clicksBonus += 1; 
                             clicksOnUpdate += 1;
                             clicksUpdateCost += clicksBonus;
                         }
                         else if (btnUpdataNum == 1) {  
                             clicksOnUpdate += 10;
-                            for (let index = 0; index < 10; index++) {
-                                clicksBonus += 1;
-                                clicksUpdateCost += clicksBonus;  
-                            }
+                            funcUpdateCost(1, 10);
                         }
-                        else { 
+                        else if (btnUpdataNum == 2) { 
                             clicksOnUpdate += 100;
-                            for (let index = 0; index < 100; index++) {
+                            funcUpdateCost(1, 100);
+                        }
+                        else {
+                            clicksOnUpdate += indexClicksGlobal;
+                            for (let index = 0; index < indexClicksGlobal; index++) {
                                 clicksBonus += 1;
                                 clicksUpdateCost += clicksBonus;  
                             }
@@ -408,6 +434,70 @@ function start() {
                 };
             };
             
+            function funcUpdateCost(argMode, argNumb) {
+                if (argMode == 1) {
+
+                    for (let index = 0; index < argNumb; index++) {
+                        clicksBonus += 1;
+                        clicksUpdateCost += clicksBonus;
+                    }
+
+                } else if (argMode == 2) {
+                    
+                    let newUpdateCost = clicksUpdateCost;
+                    let newClicksBonus = clicksBonus;
+                    let newUpdateReCost = clicksUpdateCost;
+
+                    for (let index = 0; index < argNumb; index++) {
+                        if (index == 0) {
+                            newUpdateCost += newClicksBonus;
+                        } else {
+                            newClicksBonus += 1;
+                            newUpdateCost += (newClicksBonus + newUpdateReCost);
+                        };  
+                        newUpdateReCost += newClicksBonus;
+
+                    }
+                    return newUpdateCost;
+                }
+            };
+            
+            function letbiHight(argUpdateCost) { 
+    
+                let whileSetTrue = true;
+                let indexClicks = 1;
+                let indexUpdataCostNum = argUpdateCost;
+                let idexUpdateCost = argUpdateCost;
+            
+                while (whileSetTrue) {
+                    if (clicks > indexUpdataCostNum) {
+                        indexClicks += 1;
+                        idexUpdateCost += indexClicks;  
+                        indexUpdataCostNum = (idexUpdateCost * indexClicks)
+                    }
+                    else if (idexUpdateCost == UpdateCostNum) {
+                        whileSetTrue = false;
+                    } 
+                    else {
+                        let indexPreClicks = indexClicks;
+                        indexClicks = 0; 
+                        idexUpdateCost -= indexPreClicks;  
+                        for (let index = 0; index < indexPreClicks ; index++) {
+                            indexClicks += 1;
+                            idexUpdateCost += indexClicks;
+                        }
+
+                        indexPreClicks = 0;
+                        indexClicksGlobal = indexClicks;
+
+                        UpdateCostNum = idexUpdateCost;
+                        indexUpdataCostGlobal = UpdateCostNum;
+
+                        whileSetTrue = false;
+                    };
+                }
+            };
+
             UpdateCostFunc();
 
             function btnUpdataFunc() {

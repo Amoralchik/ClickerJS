@@ -1,5 +1,6 @@
 
 --Version: 0.15.4.1
+    MAX button fix
 
 --Hotfix 0.15.4.0
     fix price again

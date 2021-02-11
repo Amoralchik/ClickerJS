@@ -321,9 +321,10 @@ function start() {
         let clicksUpdateNum = 0;
         let btnUpgIdBool = true;
         let indexClicksGlobal = 0;
-        let indexUpdataCostGlobal = 0;
 
         function clicksUpdateUpdata() {
+
+            indexClicksGlobal = letbiHight();
 
             if (clicksUpdateNum >= 100) {
                 clicksUpdateNum = 0
@@ -366,9 +367,9 @@ function start() {
                 };
                 btnUpgId[3].onclick = () => {
                     btnUpdataNum = 3;
-                    UpdateCostNum = UpdateCostNumFix(letbiHight());
+                    UpdateCostNum = UpdateCostNumFix(indexClicksGlobal);
                     console.log(UpdateCostNum);
-                    listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum} per: ${letbiHight()}`;
+                    listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum} per: ${indexClicksGlobal}`;
                     btnUpdataFunc();
                     UpdateCostFunc();
                 };
@@ -408,8 +409,8 @@ function start() {
                     }
                     else {
                         btnUpdataNum = 3;
-                        UpdateCostNum = UpdateCostNumFix(letbiHight());
-                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum} per: ${letbiHight()}`;
+                        UpdateCostNum = UpdateCostNumFix(indexClicksGlobal);
+                        listBtn1.textContent = ` Buy Upgrade: ${UpdateCostNum} per: ${indexClicksGlobal}`;
                         btnUpdataFunc();
                         UpdateCostFunc();
                     };
@@ -439,9 +440,9 @@ function start() {
                             UpdateCostNumFix(100, false);
                         }
                         else {
-                            clicksOnUpdate += letbiHight();
-                            clicksUpdateNum += letbiHight();
-                            UpdateCostNumFix(letbiHight(), false);
+                            clicksOnUpdate += indexClicksGlobal;
+                            clicksUpdateNum += indexClicksGlobal;
+                            UpdateCostNumFix(indexClicksGlobal, false);
                         };
 
                         clicks =  clicks - UpdateCostNum;

@@ -1,4 +1,7 @@
 
+--Version: 0.15.4.5 
+    fix 4.3 bags, locked btn fix,version migration in JS, change theme via time
+
 --Version: 0.15.4.3
     crash fix, add more bag
 

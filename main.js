@@ -1,6 +1,9 @@
 let inputUN = document.querySelector('#input__UserName');
 let btnUN = document.querySelector('#btnUN');
 
+const mediaText = document.querySelector('#mediaText');
+mediaText.textContent = "Version: 0.15.4.5";
+
 let clicks = 0,
     scoreDB = clicks,
     usernameDB = "Guest";
@@ -92,7 +95,6 @@ const display = document.querySelector('#display'),
       restartButton = document.querySelector('#restart'),
       winterButton = document.querySelector('#winter'),
       bodyHtml = document.querySelector("#body"),
-      mediaText = document.querySelector("#mediaText"),
       idleCol4 = document.querySelector("#idleCol4");
 
 const btnradio1 = document.querySelector("#btnradio1"),
@@ -139,6 +141,8 @@ let themeWinterOn = true;
 
 winterButton.addEventListener( "click" , themeChenge);
 
+const dataTime = new Date();
+
 function themeChenge() {
 
     restartButton.classList.toggle("winter__restart");
@@ -157,7 +161,9 @@ function themeChenge() {
     
 };
 
-themeChenge()
+if (dataTime.getHours() >= 7 && dataTime.getHours() <= 18) {
+    themeChenge();
+};
 
 timeDisplay.textContent = '0:00';
 display.textContent = `CLICKS: 0`;
@@ -288,18 +294,6 @@ function start() {
         let clicksGemsMine = 0;
         PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksGemsMine} `;
 
-        btnUpgId[4].onclick = () => {
-            if (btnUpgIdBool) {
-                btnUpgIdBool = false;
-                btnUpdataNum = 0;
-                clicksUpdateUpdata();
-            } else {
-                btnUpgIdBool = true;
-                btnUpgId[3].removeAttribute("disabled");
-                clicksUpdateUpdata();
-            };
-        };
-
         function gamsMine() {
             if (clicks >= updateGemsMineCostNum) {
                 listBtn5.removeAttribute('disabled');
@@ -318,7 +312,7 @@ function start() {
             };
         };
 
-        setInterval(() => {
+        const intervalID = setInterval(() => {
             if (gmNum == 3) {
                 clicks += clicksGemsMine;
                 clicksResult = clicks;
@@ -337,15 +331,33 @@ function start() {
 
         function clicksUpdateUpdata() {
 
+            btnUpgId[4].onclick = () => {
+                if (btnUpgIdBool) {
+                    btnUpgIdBool = false;
+                    clicksUpdateUpdata();
+                    btnUpdataFunc();
+                    UpdateCostFunc();
+                } else {
+                    btnUpgIdBool = true;
+                    btnUpgId[3].removeAttribute("disabled");
+                    clicksUpdateUpdata();
+                    btnUpdataFunc();
+                    UpdateCostFunc();
+                };
+            };
+
+
             if (btnUpgIdBool == false || btnUpgIdBool == true) {
                 UpdateCostFunc();
             };
 
-            let Num10 = 10;
-            let Num100 = 100;
-
-            Num10 = clicksUpdateNum10;
-            Num100 = clicksUpdateNum100;
+            if (clicksUpdateNum100 == 100 || clicksUpdateNum10 == 10){
+                if (clicksUpdateNum100 == 100){
+                    clicksUpdateNum100 = 0;
+                } else {
+                    clicksUpdateNum10 = 0;
+                }
+            };
 
             PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksOnUpdate} `;
 
@@ -468,9 +480,9 @@ function start() {
                         return funcUpdateCost(2, argNum);
                     } else {
                         if ( btnUpdataNum == 1 ) {
-                            return funcUpdateCost(2, argNum, 10, Num10);
+                            return funcUpdateCost(2, argNum, 10, clicksUpdateNum10);
                         } else if (btnUpdataNum == 2) {
-                            return funcUpdateCost(2, argNum, 100, Num100);
+                            return funcUpdateCost(2, argNum, 100, clicksUpdateNum100);
                         } else if (btnUpdataNum == 3) {
                             return funcUpdateCost(2, argNum);
                         } else {
@@ -482,9 +494,9 @@ function start() {
                         return funcUpdateCost(1, argNum);
                     } else {
                         if ( btnUpdataNum == 1 ) {
-                            return funcUpdateCost(1, argNum, 10, Num10);
+                            return funcUpdateCost(1, argNum, 10, clicksUpdateNum10);
                         } else if (btnUpdataNum == 2) {
-                            return funcUpdateCost(1, argNum, 100, Num100);
+                            return funcUpdateCost(1, argNum, 100, clicksUpdateNum100);
                         } else if (btnUpdataNum == 3) {
                             return funcUpdateCost(1, argNum);
                         } else {
@@ -496,25 +508,10 @@ function start() {
 
             function funcUpdateCost(argMode, argNumb, arg10or100 = 0, arg2Numb = 0) {
 
-                if (arg2Numb == 0 && arg10or100 == 10) {
-                    arg2Numb = 10;
-                } else if (arg2Numb == 0 && arg10or100 == 100) {
-                    arg2Numb = 100;
-                };
-
                 if (arg10or100 == 10) {
-                    argNumb = arg2Numb;
-                } else if ( arg10or100 == 100) {
-                    argNumb = arg2Numb;
-                };
-                console.log(argNumb);
-
-                if (clicksUpdateNum100 >= 100 || clicksUpdateNum100 < 0) {
-                    clicksUpdateNum100 = 100;
-                };
-    
-                if (clicksUpdateNum10 >= 10 || clicksUpdateNum10 < 0) {
-                    clicksUpdateNum10 = 10;
+                    argNumb = argNumb - arg2Numb;
+                } else if ( arg10or100 == 100 ) {
+                    argNumb = argNumb - arg2Numb;
                 };
 
                 if (argMode == 1) {
@@ -523,8 +520,9 @@ function start() {
                         clicksBonus += 1;
                         clicksUpdateCost += clicksBonus;
                         clicksOnUpdate += 1;
-                        clicksUpdateNum10 -= 1;
-                        clicksUpdateNum100 -= 1;
+                        clicksUpdateNum10 += 1;
+                        clicksUpdateNum100 += 1;
+                        
                     };
 
                 } else if (argMode == 2) {
@@ -574,6 +572,7 @@ function start() {
             function btnUpdataFunc() {
                 UpdateNum =  listBtnUpdataChenge[btnUpdataNum];
             };
+
         };
 
         function exitIdle() {
@@ -591,6 +590,7 @@ function start() {
             exitButton.onclick = null;
             exitButton.setAttribute("disabled", null);
 
+            clearInterval(intervalID);
             clearTimeout(timeout);
             restart();
             clicksResult = 0; 

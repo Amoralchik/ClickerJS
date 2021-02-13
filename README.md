@@ -1,4 +1,7 @@
 
+--Version: 0.15.4.3
+    crash fix, add more bag
+
 --Version: 0.15.4.1
     MAX button fix
 

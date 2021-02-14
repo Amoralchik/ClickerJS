@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="shellHide" id="body">
+  
   <main class="container shadow-lg p-3 mb-5 mt-5 rounded">
     <div class="row justify-content-center">
       <div class="row justify-content-md-center">
@@ -80,7 +81,7 @@
               <label class="btn btn-outline-primary" for="list-btn-6">MAX</label>
 
               <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btncheck1"><i class="bi bi-lock-fill"></i></label>
+              <label class="btn btn-outline-primary" for="btncheck1">NEXT</label>
               
             </div>
 
@@ -93,6 +94,7 @@
           </div>
           <div class="tab-pane fade" id="list-business" role="tabpanel" aria-labelledby="list-business-list">
             <button class="btn btn-outline-secondary m-1" id="list-btn-5" type="button">1 GEM PER SECOND</button>
+            <button class="btn btn-outline-secondary m-1" id="list-btn-7" type="button">1 MINER</button>
           </div>
           <div class="tab-pane fade" id="list-statistic" role="tabpanel" aria-labelledby="list-statistic-list">...</div>
           <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
@@ -102,21 +104,34 @@
   </div>
 
   <div class="container shadow-lg p-3 mb-5 rounded" id="idleCol3">
-    <div id="showToastLogin" class="toast shadow d-flex text-white bg-success text-uppercase w-100 fade" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-body w-100 hide" id="showAlertLogin" role="alert" >
-        ALERT
-      </div>
-    </div>
-    <div class="input-group mb-3 mt-3">
-      <input class="form-control text__Transform" type="text" id="input__UserName" placeholder="Enter your username">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="btnUN">submit</button>
+    <div class="accordion accordion-flush mt-2" id="accordionTwo">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading4">
+          <button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+            USERNAME
+          </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse show collapse" aria-labelledby="heading4" data-bs-parent="#accordionTwo">
+          <div class="accordion-body">
+            <div id="showToastLogin" class="toast shadow d-flex text-white bg-success text-uppercase w-100 fade" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-body w-100 hide" id="showAlertLogin" role="alert" >
+                ALERT
+              </div>
+            </div>
+            <div class="input-group mb-3 mt-3">
+              <input class="form-control text__Transform" type="text" id="input__UserName" placeholder="Enter your username">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="btnUN">submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="container mt-2 shadow-lg p-3 mb-5 rounded" id="idleCol2">
-    <div class="accordion mt-2" id="accordionExample">
+    <div class="accordion accordion-flush mt-2" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">

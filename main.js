@@ -2,7 +2,7 @@ let inputUN = document.querySelector('#input__UserName');
 let btnUN = document.querySelector('#btnUN');
 
 const mediaText = document.querySelector('#mediaText');
-mediaText.textContent = "Version: 0.15.4.5";
+mediaText.textContent = "Version: 0.15.4.7";
 
 let clicks = 0,
     scoreDB = clicks,
@@ -157,7 +157,7 @@ function themeChenge() {
     } else {
         winterButton.innerHTML = `LIGHT <i class="bi bi-toggle-off"></i>`;
         themeWinterOn = true;
-    }
+    };
     
 };
 
@@ -192,7 +192,7 @@ function  gmNumberFix() {
         } else {
             timerout = 15000;
             return timerout;
-        }
+        };
     }
     else {
         return null;
@@ -215,7 +215,7 @@ function start() {
         timeDisplay.textContent = formatTime(timeout);;
     } else {
         timeDisplay.textContent = `GEMS PER SECOND: 0`;
-    }
+    };
 
     button.onclick = (() => {
         clicks += 1;
@@ -236,9 +236,9 @@ function start() {
             timeDisplay.textContent = '0:00';
             button.textContent = 'GAME OVER';
 
-            endGameDB()
+            endGameDB();
 
-            btnDisable()
+            btnDisable();
             restartButton.removeAttribute("disabled");
             restartButton.onclick = restart;
 
@@ -262,7 +262,8 @@ function start() {
         exitButton.onclick = exitIdle;
         
         const listBtn1 = document.querySelector('#list-btn-1'),
-              listBtn5 = document.querySelector('#list-btn-5');
+              listBtn5 = document.querySelector('#list-btn-5'),
+              listBtn7 = document.querySelector('#list-btn-7');
 
         const btnIdGroupUpg = document.querySelector("#btnIdGroupUpg"),
               btnUpgId = btnIdGroupUpg.querySelectorAll("input");
@@ -281,44 +282,84 @@ function start() {
             display.textContent = ` GEMS: ${clicksResult}`;
             scoreDB = clicksResult;
             clicksUpdateUpdata();
-            gamsMine();
+            gamsMineUpdata();
         });
         
         listBtn1.textContent = ` Buy Upgrade: ${100}`;
 
         let btnUpdataNum = 0;
-
-        let updateGemsMineCostNum = 1000;
+        
+        let updateGemsMineCostNum = 10000;
         listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
 
         let clicksGemsMine = 0;
-        PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksGemsMine} `;
+        PlabelUpgrade.textContent = ` Upgrade Bying: 0 `;
 
-        function gamsMine() {
-            if (clicks >= updateGemsMineCostNum) {
-                listBtn5.removeAttribute('disabled');
-                listBtn5.onclick = () => {
-                    clicksGemsMine += 100;
-                    clicks = clicks - updateGemsMineCostNum;
-                    updateGemsMineCostNum = Math.ceil(updateGemsMineCostNum + 1000);
-                    listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
-                    timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
-                    display.textContent = `GEMS: ${clicks}`;
-                    clicksUpdateUpdata();
-                    gamsMine();
+        let minerGemsCostNum = 1000;
+        listBtn7.textContent = ` Buy Upgrade: ${minerGemsCostNum}`;
+
+        let minerGemsClicks = 0;
+        // PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksGemsMine} `;
+        let minerGemsOn = false;
+        let minersGems = 0;
+
+        function gamsMineUpdata() {
+
+            function minerGems() {
+                if (clicks >= minerGemsCostNum) {
+                    listBtn7.removeAttribute('disabled');
+                    listBtn7.onclick = () => {
+                        minerGemsOn = true;
+                        minersGems += 1;
+                        clicks = clicks - minerGemsCostNum;
+                        minerGemsCostNum = Math.ceil(minerGemsCostNum + 1000);
+                        listBtn7.textContent = ` Buy Upgrade: ${minerGemsCostNum}`;
+                        timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine + minerGemsClicks} `;
+                        display.textContent = `GEMS: ${clicks}`;
+                        clicksUpdateUpdata();
+                        gamsMineUpdata();        
+                    };
+                } else {
+                    listBtn7.setAttribute('disabled', null);
                 };
-            } else {
-                listBtn5.setAttribute('disabled', null);
             };
+            
+            if (minerGemsOn) {
+                minerGemsClicks = clicksBonus * minersGems;
+                timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine + minerGemsClicks} `;
+            };
+
+            minerGems();
+
+            function gamsMine() {
+                if (clicks >= updateGemsMineCostNum) {
+                    listBtn5.removeAttribute('disabled');
+                    listBtn5.onclick = () => {
+                        clicksGemsMine += 100;
+                        clicks = clicks - updateGemsMineCostNum;
+                        updateGemsMineCostNum = Math.ceil(updateGemsMineCostNum + 10000);
+                        listBtn5.textContent = ` Buy Upgrade: ${updateGemsMineCostNum}`;
+                        timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine + minerGemsClicks} `;
+                        display.textContent = `GEMS: ${clicks}`;
+                        clicksUpdateUpdata();
+                        gamsMineUpdata();
+                    };
+                } else {
+                    listBtn5.setAttribute('disabled', null);
+                };
+            };
+
+            gamsMine();
+            
         };
 
         const intervalID = setInterval(() => {
             if (gmNum == 3) {
-                clicks += clicksGemsMine;
+                clicks += clicksGemsMine + minerGemsClicks;
                 clicksResult = clicks;
-                timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine} `;
+                timeDisplay.textContent = ` GEMS PER SECOND: ${clicksGemsMine + minerGemsClicks} `;
                 display.textContent = `GEMS: ${clicksResult}`;
-                gamsMine();
+                gamsMineUpdata();
                 clicksUpdateUpdata();
             };
         }, 1000)
@@ -346,17 +387,16 @@ function start() {
                 };
             };
 
-
-            if (btnUpgIdBool == false || btnUpgIdBool == true) {
-                UpdateCostFunc();
-            };
-
-            if (clicksUpdateNum100 == 100 || clicksUpdateNum10 == 10){
+            if (clicksUpdateNum100 >= 100 || clicksUpdateNum10 >= 10){
                 if (clicksUpdateNum100 == 100){
                     clicksUpdateNum100 = 0;
                 } else {
                     clicksUpdateNum10 = 0;
                 }
+            };
+
+            if (btnUpgIdBool == false || btnUpgIdBool == true) {
+                UpdateCostFunc();
             };
 
             PlabelUpgrade.textContent = ` Upgrade Bying: ${clicksOnUpdate} `;
@@ -466,7 +506,7 @@ function start() {
                         btnUpdataFunc();
                         UpdateCostFunc();
                         listBtnFunc();
-                        gamsMine();
+                        gamsMineUpdata();
                     };
                 } 
                 else {
@@ -515,8 +555,15 @@ function start() {
                 };
 
                 if (argMode == 1) {
-
-                    for (let index = 0; index < argNumb; index++) {
+                    console.log(argNumb);
+                    for (let index = 0; index < argNumb; index++) {     
+                        if (clicksUpdateNum100 >= 100 || clicksUpdateNum10 >= 10){
+                            if (clicksUpdateNum100 == 100){
+                                clicksUpdateNum100 = 0;
+                            } else {
+                                clicksUpdateNum10 = 0;
+                            }
+                        };
                         clicksBonus += 1;
                         clicksUpdateCost += clicksBonus;
                         clicksOnUpdate += 1;

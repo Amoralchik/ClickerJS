@@ -1,6 +1,12 @@
 
+--Version: 0.15.4.7
+    fix 4.5 bags, add new btn
+
 --Version: 0.15.4.5 
     fix 4.3 bags, locked btn fix,version migration in JS, change theme via time
+
+===============================OLD VERSION===============================
+
 
 --Version: 0.15.4.3
     crash fix, add more bag
@@ -22,8 +28,6 @@
 
 --Version 0.15.1.8
     fix, reDesigned, first IDLE Update
-    
-===============================OLD VERSION===============================
 
 --Version 0.12
     fix, input / alert for username

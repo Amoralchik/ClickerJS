@@ -1,4 +1,12 @@
 
+--Version: 0.15.5.0.5
+    WIP (
+        migration to Classes for btn, not all btn in idle are working
+    )
+    fix (
+        Max btn in Next (idle)
+    )
+
 --Version: 0.15.4.7
     fix 4.5 bags, add new btn
 

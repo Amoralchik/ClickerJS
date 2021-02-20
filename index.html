@@ -19,9 +19,10 @@
           <div class="row justify-content-md-center mt-1">
             <h1 class="fs-4 text-center toph1 text-primary" id="time__display"></h1>
             <h1 class="fs-4 text-center toph1 text-primary" id="display"></h1>
+            <h1 class="fs-4 text-center toph1 text-primary" id="display__clicks"></h1>
           </div>
           <div class="btn-group btn-group-lg m-2" role="group">
-            <button type="button" class="btn btn-danger btn-lg w-100 buttonGame fs-2 text-wrap" id="button">START GAME</button>
+            <button type="button" class="btn btn-danger btn-lg w-100 buttonGame fs-2 text-wrap" id="buttonGame">START GAME</button>
               
             <button type="button" class="btn btn-outline-danger btn-sm w-auto" id="restart" disabled >
               <i class="bi bi-arrow-counterclockwise "></i>
@@ -33,7 +34,7 @@
     <div class="row justify-content-md-center col ">
       <div class="btn-group " role="group">
         <button type="button" class="btn btn-primary" id="winter"> LIGHT <i class="bi bi-toggle-off"></i></button>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="radioBtn">
           <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
           <label class="btn btn-outline-primary" for="btnradio1">CLASSIC</label>
 
@@ -55,6 +56,23 @@
 
   <div class="container shadow-lg p-3 mb-5 rounded hide" id="idleCol4">
     <div class="row">
+      <div class="btn-group mb-1" role="group" aria-label="Idle radio toggle button group" id="btnIdGroupUpg">
+        <input type="radio" class="btn-check" name="btnradio2" id="list-btn-2" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="list-btn-2">1</label>
+      
+        <input type="radio" class="btn-check" name="btnradio2" id="list-btn-3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="list-btn-3">10</label>
+      
+        <input type="radio" class="btn-check" name="btnradio2" id="list-btn-4" autocomplete="off">
+        <label class="btn btn-outline-primary" for="list-btn-4">100</label>
+
+        <input type="radio" class="btn-check" name="btnradio2" id="list-btn-6" autocomplete="off">
+        <label class="btn btn-outline-primary" for="list-btn-6">MAX</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck1">NEXT</label>
+        
+      </div>
       <div class="col-4">
         <div class="list-group " id="list-tab" role="tablist">
           <a class="list-group-item list-group-item-action bg-primary text-light active" id="list-upgrades-list" data-bs-toggle="list" href="#list-upgrades" role="tab" aria-controls="upgrades">Upgrades</a>
@@ -67,23 +85,6 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="list-upgrades" role="tabpanel" aria-labelledby="list-upgrades-list">
             <button class="btn btn-outline-secondary m-1" id="list-btn-1" type="button">Buy Upgrade</button>
-            <div class="btn-group" role="group" aria-label="Idle radio toggle button group" id="btnIdGroupUpg">
-              <input type="radio" class="btn-check" name="btnradio2" id="list-btn-2" autocomplete="off" checked>
-              <label class="btn btn-outline-primary" for="list-btn-2">1</label>
-            
-              <input type="radio" class="btn-check" name="btnradio2" id="list-btn-3" autocomplete="off">
-              <label class="btn btn-outline-primary" for="list-btn-3">10</label>
-            
-              <input type="radio" class="btn-check" name="btnradio2" id="list-btn-4" autocomplete="off">
-              <label class="btn btn-outline-primary" for="list-btn-4">100</label>
-
-              <input type="radio" class="btn-check" name="btnradio2" id="list-btn-6" autocomplete="off">
-              <label class="btn btn-outline-primary" for="list-btn-6">MAX</label>
-
-              <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btncheck1">NEXT</label>
-              
-            </div>
 
             <div class="m-1 list-group">
               <list class="list-group-item bg-transparent text-uppercase">

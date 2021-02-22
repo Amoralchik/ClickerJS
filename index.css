@@ -1,38 +1,37 @@
-
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
 /* Main --------------------------------------------------------*/
 
 html {
-    font-family: 'Bebas Neue';
-    font-size: 2rem;
+	font-family: "Bebas Neue";
+	font-size: 2rem;
 }
 
 body {
-    background-color: #222;
-    color: #EFF6EE;
+	background-color: #222;
+	color: #eff6ee;
 }
 
 .settings {
-    justify-content: space-between;
+	justify-content: space-between;
 	display: inline-flex;
 	align-items: center;
 }
 
 .divbody {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
 }
 
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .marginAdd {
@@ -40,29 +39,29 @@ body {
 }
 
 .toph1 {
-    text-align: center;
-    font-size: 1.7rem;
-    margin-bottom: 10px;
+	text-align: center;
+	font-size: 1.7rem;
+	margin-bottom: 10px;
 }
 
 li {
-    list-style-type: decimal;
+	list-style-type: decimal;
 }
 
 /*button --------------------------------------------------------*/
 .buttonGame {
-    min-width: 600px;
+	min-width: 600px;
 }
 
 .buttonRestart {
-    position: relative;
-    margin-top: 15px;
-    width: 75px;
-    height: 75px;
+	position: relative;
+	margin-top: 15px;
+	width: 75px;
+	height: 75px;
 }
 
 .btn_iconStyle {
-    text-align: center;
+	text-align: center;
 }
 
 /*media --------------------------------------------------------*/
@@ -84,11 +83,11 @@ li {
 	align-items: center;
 }
 
-.media__a{
+.media__a {
 	display: inline-flex;
 	text-align: center;
 	align-items: center;
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .media__img {
@@ -99,7 +98,7 @@ li {
 }
 
 .media__avatar {
-    margin: 0px;
+	margin: 0px;
 }
 
 .media__text {
@@ -113,32 +112,32 @@ li {
 /* white theme --------------------------------------------------------*/
 
 .winter {
-    background-color: #F2F8F8;
-    color:  #000000;
+	background-color: #f2f8f8;
+	color: #000000;
 }
 
 /* other --------------------------------------------------------*/
 
-.text__Transform{
-    text-transform: uppercase;
+.text__Transform {
+	text-transform: uppercase;
 }
 
 .shellHide {
-    -webkit-user-select: none;
-    /* user-select -- это нестандартное свойство */
+	-webkit-user-select: none;
+	/* user-select -- это нестандартное свойство */
 
-    -moz-user-select: none;
-    /* поэтому нужны префиксы */
+	-moz-user-select: none;
+	/* поэтому нужны префиксы */
 
-    -ms-user-select: none;
+	-ms-user-select: none;
 }
 
-.hide{
-    display: none;
+.hide {
+	display: none;
 }
 
 #display,
 #time__display,
 #counter {
-    height: 52px;
+	height: 52px;
 }

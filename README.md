@@ -1,3 +1,9 @@
+--Version: 0.15.5.5
+fix - non idle update, refactoring code, top list fix, input fix (QWERTYUIOP12 = QWERTYUIOP1... and QWERTYUIOP = QWERTYUIOP... | now: QWERTYUIOP12 = QWERTYUIOP... , QWERTYUIOP = QWERTYUIOP) and littel refactoring userNameInput Func
+
+--Version: 0.15.5.1.2
+fix, add onClickUpdate func in clicksBtnUpdate, now btn.onclick takes fewer lines
+
 --Version: 0.15.5.1.1 Prettier
 
 --Version: 0.15.5.1
@@ -17,7 +23,7 @@ WIP (migration to Classes for btn, not all btn in idle are working)
 fix 4.5 bags, add new btn
 
 --Version: 0.15.4.5
-fix 4.3 bags, locked btn fix,version migration in JS, change theme via time
+fix 4.3 bags, locked btn fix,version migration from html to JS, change theme via time
 
 --Version: 0.15.4.3
 crash fix, add more bag

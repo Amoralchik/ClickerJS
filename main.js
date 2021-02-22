@@ -2,7 +2,7 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.5.1";
+mediaText.textContent = "Version: 0.15.5.5";
 
 class btnClickCreate {
 	constructor(startCost, name, index, id, update) {
@@ -101,32 +101,40 @@ const idleCol2 = document.querySelector("#idleCol2"),
 	showToastLogin = document.querySelector("#showToastLogin");
 
 function userNameInput() {
+	function setInputFunc() {
+		setTimeout(() => {
+			inputUN.setAttribute("disabled", null);
+			btnUN.setAttribute("disabled", null);
+
+			let inUN = inputUN.value;
+			let newUserName = inUN;
+			if (inUN.length > 10) {
+				if (inUN.length == 10) {
+					newUserName = inUN;
+				} else {
+					newUserName = `${inUN.substring(0, 10)}...`;
+				}
+			}
+			showToastLogin.classList.add("show");
+			showAlertLogin.textContent = `Your Username: ${newUserName.toUpperCase()}`;
+			userDB.user = newUserName.toUpperCase();
+			setTimeout(() => {
+				showToastLogin.classList.remove("show");
+				inputUN.removeAttribute("disabled");
+				btnUN.removeAttribute("disabled");
+				setTimeout(() => {
+					showAlertLogin.classList.add("hide");
+				}, 300);
+			}, 2000);
+		}, 200);
+	}
+
 	btnUN.onclick = () => {
 		if (inputUN.value == "" || inputUN.value == null || inputUN.value == undefined) {
 			userDB.user = "Guest";
 		} else {
 			showAlertLogin.classList.remove("hide");
-			setTimeout(() => {
-				inputUN.setAttribute("disabled", null);
-				btnUN.setAttribute("disabled", null);
-
-				let inUN = inputUN.value;
-				let newUserName = inUN;
-				if (inUN.length > 10) {
-					newUserName = `${inUN.substring(0, 11)}...`;
-				}
-				showToastLogin.classList.add("show");
-				showAlertLogin.textContent = `Your Username: ${newUserName.toUpperCase()}`;
-				userDB.user = newUserName.toUpperCase();
-				setTimeout(() => {
-					showToastLogin.classList.remove("show");
-					inputUN.removeAttribute("disabled");
-					btnUN.removeAttribute("disabled");
-					setTimeout(() => {
-						showAlertLogin.classList.add("hide");
-					}, 300);
-				}, 2000);
-			}, 200);
+			setInputFunc();
 		}
 	};
 
@@ -136,27 +144,7 @@ function userNameInput() {
 		} else {
 			if (e.key == "Enter") {
 				showAlertLogin.classList.remove("hide");
-				inputUN.setAttribute("disabled", null);
-				btnUN.setAttribute("disabled", null);
-
-				let inUN = inputUN.value;
-				let newUserName = inUN;
-				if (inUN.length > 10) {
-					newUserName = `${inUN.substring(0, 11)}...`;
-				}
-				setTimeout(() => {
-					showToastLogin.classList.add("show");
-					showAlertLogin.textContent = `Your Username: ${newUserName.toUpperCase()}`;
-					userDB.user = newUserName.toUpperCase();
-					setTimeout(() => {
-						showToastLogin.classList.remove("show");
-						inputUN.removeAttribute("disabled");
-						btnUN.removeAttribute("disabled");
-						setTimeout(() => {
-							showAlertLogin.classList.add("hide");
-						}, 300);
-					}, 2000);
-				}, 200);
+				setInputFunc();
 			}
 		}
 	};
@@ -518,19 +506,22 @@ function start() {
 					}
 				}
 
+				function onClickUpdate(btn, argBonus = 1) {
+					if (btnUpdataNum == 0) {
+						clicks = updateBtnClick(btn, 1, argBonus);
+					} else if (btnUpdataNum == 1) {
+						clicks = updateBtnClick(btn, 10, argBonus, 10);
+					} else if (btnUpdataNum == 2) {
+						clicks = updateBtnClick(btn, 100, argBonus, 100);
+					} else {
+						clicks = updateBtnClick(btn, btn.index, argBonus);
+					}
+				}
+
 				if (clicks >= btnCreated1.updateCost) {
 					btnCreated1.name.removeAttribute("disabled");
 					btnCreated1.name.onclick = () => {
-						if (btnUpdataNum == 0) {
-							clicks = updateBtnClick(btnCreated1, 1, 1);
-						} else if (btnUpdataNum == 1) {
-							clicks = updateBtnClick(btnCreated1, 10, 1, 10);
-						} else if (btnUpdataNum == 2) {
-							clicks = updateBtnClick(btnCreated1, 100, 1, 100);
-						} else {
-							clicks = updateBtnClick(btnCreated1, btnCreated1.index, 1);
-						}
-
+						onClickUpdate(btnCreated1);
 						display.textContent = `GEMS: ${clicks.toLocaleString()}`;
 						clicksUpdateUpdata();
 						clicksBtnUpdate();
@@ -542,15 +533,7 @@ function start() {
 				if (clicks >= btnCreated2.updateCost) {
 					btnCreated2.name.removeAttribute("disabled");
 					btnCreated2.name.onclick = () => {
-						if (btnUpdataNum == 0) {
-							clicks = updateBtnClick(btnCreated2, 1, 100);
-						} else if (btnUpdataNum == 1) {
-							clicks = updateBtnClick(btnCreated2, 10, 100, 10);
-						} else if (btnUpdataNum == 2) {
-							clicks = updateBtnClick(btnCreated2, 100, 100, 100);
-						} else {
-							clicks = updateBtnClick(btnCreated2, btnCreated2.index, 1);
-						}
+						onClickUpdate(btnCreated2, 100);
 
 						if (minerGemsOn != true) {
 							minerGemsOn = true;
@@ -559,6 +542,7 @@ function start() {
 						display.textContent = `GEMS: ${clicks.toLocaleString()}`;
 						clicksUpdateUpdata();
 						clicksBtnUpdate();
+						gamsMineUpdata();
 					};
 				} else {
 					btnCreated2.name.setAttribute("disabled", null);
@@ -567,25 +551,16 @@ function start() {
 				if (clicks >= btnCreated3.updateCost) {
 					btnCreated3.name.removeAttribute("disabled");
 					btnCreated3.name.onclick = () => {
-						if (btnUpdataNum == 0) {
-							clicks = updateBtnClick(btnCreated3, 1, 1);
-						} else if (btnUpdataNum == 1) {
-							clicks = updateBtnClick(btnCreated3, 10, 1, 10);
-						} else if (btnUpdataNum == 2) {
-							clicks = updateBtnClick(btnCreated3, 100, 1, 100);
-						} else {
-							clicks = updateBtnClick(btnCreated3, btnCreated3.index, 100);
-						}
+						onClickUpdate(btnCreated3);
 
 						if (minerGemsOn != true) {
 							minerGemsOn = true;
 						}
 
-						console.log(btnCreated3.bonus + minerGemsClicks);
-
 						display.textContent = `GEMS: ${clicks.toLocaleString()}`;
 						clicksUpdateUpdata();
 						clicksBtnUpdate();
+						gamsMineUpdata();
 					};
 				} else {
 					btnCreated3.name.setAttribute("disabled", null);
@@ -655,42 +630,30 @@ function endGameDB() {
 	clicksBonus = 0;
 	clicksDB = 0;
 
+	function topAdd(scoretop, topnum) {
+		scoretop.push({ user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum] });
+
+		sortTop(scoretop);
+
+		topnum.innerHTML = "";
+
+		for (let item = 0; item < scoretop.length && item < 10; item++) {
+			let elem = document.createElement("li"),
+				contenter = document.createTextNode(` ${scoretop[item].user} - score: ${scoretop[item].score}`);
+
+			elem.classList.add("list-item");
+			elem.appendChild(contenter);
+
+			topnum.append(elem);
+		}
+	}
+
 	if (gmNum == 0) {
-		scoreTop1.push({ user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum] });
-
-		sortTop(scoreTop1);
-
-		top1.innerHTML = "";
-		for (let item = 0; item < scoreTop1.length && item < 10; item++) {
-			top1.innerHTML += `
-            <li class="list-group-item bg-transparent text-uppercase">
-            ${item + 1}. ${scoreTop1[item].user} - score: ${scoreTop1[item].score}
-            </li>`;
-		}
+		topAdd(scoreTop1, top1);
 	} else if (gmNum == 1) {
-		scoreTop2.push({ user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum] });
-
-		sortTop(scoreTop2);
-
-		top2.innerHTML = "";
-		for (let item = 0; item < scoreTop2.length && item < 10; item++) {
-			top2.innerHTML += `
-            <li class="list-group-item bg-transparent text-uppercase">
-            ${item + 1}. ${scoreTop2[item].user} - score: ${scoreTop2[item].score}
-            </li>`;
-		}
+		topAdd(scoreTop2, top2);
 	} else {
-		scoreTop3.push({ user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum] });
-
-		sortTop(scoreTop3);
-
-		top3.innerHTML = "";
-		for (let item = 0; item < scoreTop3.length && item < 10; item++) {
-			top3.innerHTML += `
-            <li class="list-group-item bg-transparent text-uppercase">
-            ${item + 1}. ${scoreTop3[item].user} - score: ${scoreTop3[item].score} 
-            </li>`;
-		}
+		topAdd(scoreTop3, top3);
 	}
 }
 

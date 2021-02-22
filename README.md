@@ -1,20 +1,22 @@
 
+--Version: 0.15.5.1
+    big update:
+        1: 1-10-100-MAX-NEXT btn new working for all btn in idle 
+        2: MAX btn work in NEXT mode
+        3: end migration to classes for btn
+        4: fix price
+        5: refactoring code
+
+===============================OLD VERSION===============================
+
 --Version: 0.15.5.0.5
-    WIP (
-        migration to Classes for btn, not all btn in idle are working
-    )
-    fix (
-        Max btn in Next (idle)
-    )
+    WIP (migration to Classes for btn, not all btn in idle are working)
 
 --Version: 0.15.4.7
     fix 4.5 bags, add new btn
 
 --Version: 0.15.4.5 
     fix 4.3 bags, locked btn fix,version migration in JS, change theme via time
-
-===============================OLD VERSION===============================
-
 
 --Version: 0.15.4.3
     crash fix, add more bag

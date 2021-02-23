@@ -2,7 +2,7 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.6";
+mediaText.textContent = "Version: 0.15.6.1";
 
 class btnClickCreate {
 	constructor(startCost, name, index, id, update) {
@@ -616,6 +616,7 @@ function start() {
 			button.textContent = "GAME OVER";
 
 			timeDisplay.textContent = "0:00";
+			displayClicks.textContent = "";
 
 			btnDisable();
 			exitButton.onclick = null;

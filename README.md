@@ -1,3 +1,5 @@
+--Version: 0.15.6.1 fix, displayClicks clear after exit from idle mode
+
 --Version: 0.15.6 more micro fix and littel addition
 
 --Version: 0.15.5.6 mode btn

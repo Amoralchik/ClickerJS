@@ -2,7 +2,7 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.5.5";
+mediaText.textContent = "Version: 0.15.6";
 
 class btnClickCreate {
 	constructor(startCost, name, index, id, update) {
@@ -15,6 +15,7 @@ class btnClickCreate {
 		this.id = id;
 		this.update = update;
 		this.bonus = 0;
+		this.level = 0;
 	}
 
 	NumFix = () => {
@@ -72,6 +73,7 @@ class btnClickCreate {
 			this.cost += this.update;
 			this.updateNum100 += 1;
 			this.updateNum10 += 1;
+			this.level += 1;
 			this.NumFix();
 		}
 		return clicks - this.updateCost;
@@ -80,6 +82,7 @@ class btnClickCreate {
 	start = () => {
 		this.bonus += 1;
 		this.NumFix();
+		this.level += 1;
 		this.updateNum100 += 1;
 		this.updateNum10 += 1;
 	};
@@ -167,32 +170,30 @@ const display = document.querySelector("#display"),
 	bodyHtml = document.querySelector("#body"),
 	idleCol4 = document.querySelector("#idleCol4");
 
-const btnradio1 = document.querySelector("#btnradio1"),
-	btnradio2 = document.querySelector("#btnradio2"),
-	btnradio3 = document.querySelector("#btnradio3"),
-	btnradio4 = document.querySelector("#btnradio4");
+const radioBtn = document.querySelector("#radioBtn"),
+	btnradio = radioBtn.querySelectorAll("input");
 
 const gameModeChenge = ["Classic", "10sec", "15sec", "idle"];
 let gmNum = 0;
 let gameMode = gameModeChenge[gmNum];
 
 function btnRadioOnClick() {
-	btnradio1.onclick = () => {
+	btnradio[0].onclick = () => {
 		gmNum = 0;
 		gameModeFunc();
 	};
 
-	btnradio2.onclick = () => {
+	btnradio[1].onclick = () => {
 		gmNum = 1;
 		gameModeFunc();
 	};
 
-	btnradio3.onclick = () => {
+	btnradio[2].onclick = () => {
 		gmNum = 2;
 		gameModeFunc();
 	};
 
-	btnradio4.onclick = () => {
+	btnradio[3].onclick = () => {
 		gmNum = 3;
 		gameModeFunc();
 	};
@@ -340,7 +341,7 @@ function start() {
 		const btnIdGroupUpg = document.querySelector("#btnIdGroupUpg"),
 			btnUpgId = btnIdGroupUpg.querySelectorAll("input");
 
-		const PlabelUpgrade = document.querySelector("#PlabelUpgrade"),
+		const PlabelUpgrade = document.querySelectorAll("p.text-center"),
 			displayClicks = document.querySelector("#display__clicks");
 
 		listBtn1.setAttribute("disabled", null);
@@ -359,8 +360,15 @@ function start() {
 
 		listBtn1.textContent = ` Buy Upgrade: `;
 		listBtn5.textContent = ` Buy Upgrade: `;
-		PlabelUpgrade.textContent = ` Lvl:  `;
 		listBtn7.textContent = ` Buy Upgrade: `;
+
+		function plabelUpgradeFunc(...btn) {
+			for (let i = 0; i < btn.length; i++) {
+				PlabelUpgrade[i].textContent = ` Lvl: ${btn[i].level} `;
+			}
+		}
+
+		plabelUpgradeFunc(btnCreated1, btnCreated2, btnCreated3);
 
 		let nextButtonActive = false;
 		let minerGemsClicks = 0;
@@ -385,7 +393,7 @@ function start() {
 		}
 
 		function clicksUpdateUpdata() {
-			// console.log( debagNum );
+			plabelUpgradeFunc(btnCreated1, btnCreated2, btnCreated3);
 
 			function btnClickUpdata(btn) {
 				btn.index = letbiHight(btn);
@@ -405,13 +413,12 @@ function start() {
 			btnClickUpdata(btnCreated2);
 			btnClickUpdata(btnCreated1);
 
-			PlabelUpgrade.textContent = ` Lvl: ${btnCreated1.bonus.toLocaleString()} `;
 			displayClicks.textContent = ` Gems per click: ${btnCreated1.bonus.toLocaleString()} `;
 
 			if (btnUpdataNum == 0) {
 				btnUpdataNum = 0;
 				btnCreated1.updateCost = btnCreated1.CostFix(1);
-				listBtn1.textContent = ` Buy Upgrade: 1 per: ${btnCreated1.updateCost.toLocaleString()}`;
+				listBtn1.textContent = ` Buy 1 Upgrades per: ${btnCreated1.updateCost.toLocaleString()}`;
 			}
 
 			function listBtnFunc() {
@@ -428,7 +435,7 @@ function start() {
 					clicksUpdateUpdata();
 				};
 				btnUpgId[3].onclick = () => {
-					btnNumFix(3, btnCreated1.index);
+					btnNumFix(3, 1, true);
 					clicksUpdateUpdata();
 				};
 
@@ -457,17 +464,17 @@ function start() {
 								btn[index].NumFix;
 								if (btnUpdataNum == 2) {
 									btn[index].updateCost = btn[index].CostFix(num, true, 100);
-									btn[index].name.textContent = ` Buy Upgrade: ${btn[index].ArgNumFix(num, true, 100).toLocaleString()} per: ${btn[index].updateCost.toLocaleString()}`;
+									btn[index].name.textContent = ` Buy ${btn[index].ArgNumFix(num, true, 100).toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 								} else if (btnUpdataNum == 1) {
 									btn[index].updateCost = btn[index].CostFix(num, true, 10);
-									btn[index].name.textContent = ` Buy Upgrade: ${btn[index].ArgNumFix(num, true, 10).toLocaleString()} per: ${btn[index].updateCost.toLocaleString()}`;
+									btn[index].name.textContent = ` Buy ${btn[index].ArgNumFix(num, true, 10).toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 								} else {
 									btn[index].updateCost = btn[index].CostFix(num);
-									btn[index].name.textContent = ` Buy Upgrade: ${btn[index].ArgNumFix(num, false).toLocaleString()} per: ${btn[index].updateCost.toLocaleString()}`;
+									btn[index].name.textContent = ` Buy ${btn[index].ArgNumFix(num, false).toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 								}
 							} else {
 								btn[index].updateCost = btn[index].CostFix(num);
-								btn[index].name.textContent = ` Buy Upgrade: ${num.toLocaleString()} per: ${btn[index].updateCost.toLocaleString()}`;
+								btn[index].name.textContent = ` Buy ${num.toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 							}
 						}
 					}
@@ -586,9 +593,17 @@ function start() {
 			}
 		}
 
-		function statDBUpdata() {
+		function statDBUpdata(...btn) {
 			const listStatistic = document.querySelector("#list-statistic");
-			listStatistic.textContent = ` Total Gems mined: ${clicksDB.toLocaleString()} `;
+			let levelDB = btnCreated1.level + btnCreated2.level + btnCreated3.level;
+
+			listStatistic.innerHTML = `
+			<ul>
+				<li> Total Gems mined: ${clicksDB.toLocaleString()} </li>
+				<li> Total Upgraded buyed: ${levelDB.toLocaleString()} </li>
+			</ul>
+			
+			`;
 		}
 
 		function exitIdle() {
@@ -663,10 +678,9 @@ function btnDisable() {
 	if (btnDisableTrue) {
 		btnUN.removeAttribute("disabled");
 		inputUN.removeAttribute("disabled");
-		btnradio1.removeAttribute("disabled");
-		btnradio2.removeAttribute("disabled");
-		btnradio3.removeAttribute("disabled");
-		btnradio4.removeAttribute("disabled");
+		for (let btn = 0; btn < btnradio.length; btn++) {
+			btnradio[btn].removeAttribute("disabled");
+		}
 		btnDisableTrue = false;
 
 		btnRadioOnClick();
@@ -674,16 +688,12 @@ function btnDisable() {
 	} else {
 		btnUN.setAttribute("disabled", null);
 		inputUN.setAttribute("disabled", null);
-		btnradio1.setAttribute("disabled", null);
-		btnradio2.setAttribute("disabled", null);
-		btnradio3.setAttribute("disabled", null);
-		btnradio4.setAttribute("disabled", null);
+		for (let btn = 0; btn < btnradio.length; btn++) {
+			btnradio[btn].setAttribute("disabled", null);
+			btnradio[btn].onclick = null;
+		}
 		btnUN.onclick = null;
 		inputUN.onkeyup = null;
-		btnradio1.onclick = null;
-		btnradio2.onclick = null;
-		btnradio3.onclick = null;
-		btnradio4.onclick = null;
 		btnDisableTrue = true;
 	}
 }

@@ -48,6 +48,10 @@ li {
 	list-style-type: decimal;
 }
 
+p {
+	margin: 0;
+}
+
 /*button --------------------------------------------------------*/
 .buttonGame {
 	min-width: 600px;
@@ -123,13 +127,7 @@ li {
 }
 
 .shellHide {
-	-webkit-user-select: none;
-	/* user-select -- это нестандартное свойство */
-
-	-moz-user-select: none;
-	/* поэтому нужны префиксы */
-
-	-ms-user-select: none;
+	user-select: none;
 }
 
 .hide {

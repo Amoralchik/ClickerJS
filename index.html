@@ -16,11 +16,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 	<body class="shellHide" id="body">
-		<main class="container shadow-lg p-3 mb-5 mt-5 rounded">
+		<main class="container shadow-lg p-3 m-5 rounded">
 			<div class="row justify-content-center">
 				<div class="row justify-content-md-center">
 					<div class="col-sm col-md-auto row justify-content-md-center">
-						<div class="row justify-content-md-center mt-1">
+						<div class="row justify-content-md-center mt-1 text-uppercase">
 							<h1 class="fs-4 text-center toph1 text-primary" id="time__display"></h1>
 							<h1 class="fs-4 text-center toph1 text-primary" id="display"></h1>
 							<h1 class="fs-4 text-center toph1 text-primary" id="display__clicks"></h1>
@@ -83,26 +83,33 @@
 						>
 						<a class="list-group-item list-group-item-action bg-primary text-light" id="list-business-list" data-bs-toggle="list" href="#list-business" role="tab" aria-controls="business">Business</a>
 						<a class="list-group-item list-group-item-action bg-primary text-light" id="list-statistic-list" data-bs-toggle="list" href="#list-statistic" role="tab" aria-controls="statistic">Statistic</a>
-						<a class="list-group-item list-group-item-action bg-primary text-light" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
 					</div>
 				</div>
 				<div class="col-8">
 					<div class="tab-content" id="nav-tabContent">
 						<div class="tab-pane fade show active" id="list-upgrades" role="tabpanel" aria-labelledby="list-upgrades-list">
-							<button class="btn btn-outline-secondary m-1" id="list-btn-1" type="button">Buy Upgrade</button>
-
 							<div class="m-1 list-group">
-								<list class="list-group-item bg-transparent text-uppercase">
-									<p class="text-center" id="PlabelUpgrade">text</p>
+								<list class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+									<button class="btn btn-outline-secondary m-1 text-uppercase" id="list-btn-1" type="button">Buy Upgrade</button>
+									<span class="badge bg-primary rounded-pill"><p class="text-center text-uppercase">lvl: 0</p></span>
 								</list>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="list-business" role="tabpanel" aria-labelledby="list-business-list">
-							<button class="btn btn-outline-secondary m-1" id="list-btn-5" type="button">1 GEM PER SECOND</button>
-							<button class="btn btn-outline-secondary m-1" id="list-btn-7" type="button">1 MINER</button>
+							<div class="m-1 list-group">
+								<list class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+									<button class="btn btn-outline-secondary m-1 text-uppercase" id="list-btn-5" type="button">1 GEM PER SECOND</button>
+									<span class="badge bg-primary rounded-pill"><p class="text-center text-uppercase">lvl: 0</p></span>
+								</list>
+							</div>
+							<div class="m-1 list-group">
+								<list class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+									<button class="btn btn-outline-secondary m-1 text-uppercase" id="list-btn-7" type="button">1 MINER</button>
+									<span class="badge bg-primary rounded-pill"><p class="text-center text-uppercase">lvl: 0</p></span>
+								</list>
+							</div>
 						</div>
 						<div class="tab-pane fade" id="list-statistic" role="tabpanel" aria-labelledby="list-statistic-list">...</div>
-						<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
 					</div>
 				</div>
 			</div>

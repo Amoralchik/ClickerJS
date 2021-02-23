@@ -1,3 +1,12 @@
+--Version: 0.15.6 more micro fix and littel addition
+
+--Version: 0.15.5.6 mode btn
+
+From > btnradio1.document.querySelector("#btnradio1")
+To > const radioBtn = document.querySelector("#radioBtn"),
+btnradio = radioBtn.querySelectorAll("input");
+btnradio[1]
+
 --Version: 0.15.5.5
 fix - non idle update, refactoring code, top list fix, input fix (QWERTYUIOP12 = QWERTYUIOP1... and QWERTYUIOP = QWERTYUIOP... | now: QWERTYUIOP12 = QWERTYUIOP... , QWERTYUIOP = QWERTYUIOP) and littel refactoring userNameInput Func
 

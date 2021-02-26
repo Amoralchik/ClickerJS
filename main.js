@@ -2,7 +2,7 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.7";
+mediaText.textContent = "Version: 0.15.7.1";
 
 let totalLostGems = 0;
 
@@ -219,12 +219,8 @@ winterButton.addEventListener("click", themeChange);
 const dataTime = new Date();
 
 function themeChange() {
-	restartButton.classList.toggle("winter__restart");
-	winterButton.classList.toggle("winter__restart");
-	button.classList.toggle("winter__button");
 	bodyHtml.classList.toggle("winter");
 	mediaText.classList.toggle("winter");
-	exitButton.classList.toggle("winter__restart");
 	if (themeWinterOn) {
 		winterButton.innerHTML = `LIGHT <i class="bi bi-toggle-on"></i>`;
 		themeWinterOn = false;

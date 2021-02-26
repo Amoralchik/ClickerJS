@@ -10,6 +10,7 @@ html {
 body {
 	background-color: #222;
 	color: #eff6ee;
+	transition: 0.1s linear;
 }
 
 .settings {
@@ -57,29 +58,7 @@ p {
 	min-width: 600px;
 }
 
-.buttonRestart {
-	position: relative;
-	margin-top: 15px;
-	width: 75px;
-	height: 75px;
-}
-
-.btn_iconStyle {
-	text-align: center;
-}
-
 /*media --------------------------------------------------------*/
-
-.footer__style {
-	width: 100%;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1000;
-	align-items: center;
-	text-align: center;
-}
 
 .media__block {
 	justify-content: space-between;
@@ -118,13 +97,10 @@ p {
 .winter {
 	background-color: #f2f8f8;
 	color: #000000;
+	transition: 0.1s linear;
 }
 
 /* other --------------------------------------------------------*/
-
-.text__Transform {
-	text-transform: uppercase;
-}
 
 .shellHide {
 	user-select: none;
@@ -132,6 +108,7 @@ p {
 
 .hide {
 	display: none;
+	transition: 0.2s linear;
 }
 
 #display,

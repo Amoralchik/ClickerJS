@@ -1,3 +1,5 @@
+--Version: 0.15.7.1 css rework
+
 --Version: 0.15.7 last update in this mount, add new btn, little fix, add letBeNum for letBeHight func (for fix a crash at cheat gems)
 
 --Version: 0.15.6.1 fix, displayClicks clear after exit from idle mode

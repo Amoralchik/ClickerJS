@@ -2,7 +2,9 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.6.1";
+mediaText.textContent = "Version: 0.15.7";
+
+let totalLostGems = 0;
 
 class btnClickCreate {
 	constructor(startCost, name, index, id, update) {
@@ -16,6 +18,7 @@ class btnClickCreate {
 		this.update = update;
 		this.bonus = 0;
 		this.level = 0;
+		this.letBeNum = 1;
 	}
 
 	NumFix = () => {
@@ -75,6 +78,7 @@ class btnClickCreate {
 			this.updateNum10 += 1;
 			this.level += 1;
 			this.NumFix();
+			totalLostGems -= this.cost;
 		}
 		return clicks - this.updateCost;
 	};
@@ -171,29 +175,29 @@ const display = document.querySelector("#display"),
 	idleCol4 = document.querySelector("#idleCol4");
 
 const radioBtn = document.querySelector("#radioBtn"),
-	btnradio = radioBtn.querySelectorAll("input");
+	btnRadio = radioBtn.querySelectorAll("input");
 
-const gameModeChenge = ["Classic", "10sec", "15sec", "idle"];
+const gameModeChange = ["Classic", "10sec", "15sec", "idle"];
 let gmNum = 0;
-let gameMode = gameModeChenge[gmNum];
+let gameMode = gameModeChange[gmNum];
 
 function btnRadioOnClick() {
-	btnradio[0].onclick = () => {
+	btnRadio[0].onclick = () => {
 		gmNum = 0;
 		gameModeFunc();
 	};
 
-	btnradio[1].onclick = () => {
+	btnRadio[1].onclick = () => {
 		gmNum = 1;
 		gameModeFunc();
 	};
 
-	btnradio[2].onclick = () => {
+	btnRadio[2].onclick = () => {
 		gmNum = 2;
 		gameModeFunc();
 	};
 
-	btnradio[3].onclick = () => {
+	btnRadio[3].onclick = () => {
 		gmNum = 3;
 		gameModeFunc();
 	};
@@ -202,7 +206,7 @@ function btnRadioOnClick() {
 btnRadioOnClick();
 
 let gameModeFunc = () => {
-	gameMode = gameModeChenge[gmNum];
+	gameMode = gameModeChange[gmNum];
 	timeout = gmNumberFix();
 };
 
@@ -210,11 +214,11 @@ button.onclick = start;
 
 let themeWinterOn = true;
 
-winterButton.addEventListener("click", themeChenge);
+winterButton.addEventListener("click", themeChange);
 
 const dataTime = new Date();
 
-function themeChenge() {
+function themeChange() {
 	restartButton.classList.toggle("winter__restart");
 	winterButton.classList.toggle("winter__restart");
 	button.classList.toggle("winter__button");
@@ -231,7 +235,7 @@ function themeChenge() {
 }
 
 if (dataTime.getHours() >= 7 && dataTime.getHours() <= 18) {
-	themeChenge();
+	themeChange();
 }
 
 timeDisplay.textContent = "0:00";
@@ -239,7 +243,7 @@ display.textContent = `CLICKS: 0`;
 
 function restart() {
 	clicks = 0;
-	timerout = 5000;
+	timerOut = 5000;
 	restartButton.setAttribute("disabled", null);
 	inputUN.removeAttribute("disabled");
 	btnUN.removeAttribute("disabled");
@@ -252,14 +256,14 @@ function restart() {
 function gmNumberFix() {
 	if (gmNum == 0 || gmNum == 1 || gmNum == 2) {
 		if (gmNum == 0) {
-			timerout = 5000;
-			return timerout;
+			timerOut = 5000;
+			return timerOut;
 		} else if (gmNum == 1) {
-			timerout = 10000;
-			return timerout;
+			timerOut = 10000;
+			return timerOut;
 		} else {
-			timerout = 15000;
-			return timerout;
+			timerOut = 15000;
+			return timerOut;
 		}
 	} else {
 		return null;
@@ -332,11 +336,15 @@ function start() {
 
 		const listBtn1 = document.querySelector("#list-btn-1"),
 			listBtn5 = document.querySelector("#list-btn-5"),
-			listBtn7 = document.querySelector("#list-btn-7");
+			listBtn7 = document.querySelector("#list-btn-7"),
+			listBtn8 = document.querySelector("#list-btn-8");
 
-		let btnCreated3 = new btnClickCreate(0, listBtn7, 1, 3, 1000),
-			btnCreated2 = new btnClickCreate(9500, listBtn5, 1, 2, 500),
-			btnCreated1 = new btnClickCreate(95, listBtn1, 1, 1, 5);
+		let btnCreated3 = new btnClickCreate(0, listBtn7, 1, 3, 10000),
+			btnCreated2 = new btnClickCreate(0, listBtn5, 1, 2, 1000),
+			btnCreated1 = new btnClickCreate(50, listBtn1, 1, 1, 50),
+			btnCreated4 = new btnClickCreate(0, listBtn8, 1, 4, 5000);
+
+		const btnCreatedArr = [btnCreated1, btnCreated2, btnCreated3, btnCreated4];
 
 		const btnIdGroupUpg = document.querySelector("#btnIdGroupUpg"),
 			btnUpgId = btnIdGroupUpg.querySelectorAll("input");
@@ -344,9 +352,14 @@ function start() {
 		const PlabelUpgrade = document.querySelectorAll("p.text-center"),
 			displayClicks = document.querySelector("#display__clicks");
 
-		listBtn1.setAttribute("disabled", null);
-		listBtn5.setAttribute("disabled", null);
-		listBtn7.setAttribute("disabled", null);
+		function idleStart(btnArr) {
+			for (let i = 0; i < btnArr.length; i++) {
+				btnArr[i].name.setAttribute("disabled", null);
+				btnArr[i].name.textContent = ` Buy Upgrade: `;
+			}
+		}
+
+		idleStart(btnCreatedArr);
 
 		button.onclick = () => {
 			clicks += btnCreated1.bonus;
@@ -358,29 +371,26 @@ function start() {
 			statDBUpdata();
 		};
 
-		listBtn1.textContent = ` Buy Upgrade: `;
-		listBtn5.textContent = ` Buy Upgrade: `;
-		listBtn7.textContent = ` Buy Upgrade: `;
-
-		function plabelUpgradeFunc(...btn) {
-			for (let i = 0; i < btn.length; i++) {
-				PlabelUpgrade[i].textContent = ` Lvl: ${btn[i].level} `;
+		function plabelUpgradeFunc(btnArr) {
+			for (let i = 0; i < btnArr.length; i++) {
+				PlabelUpgrade[i].textContent = ` Lvl: ${btnArr[i].level} `;
 			}
 		}
 
-		plabelUpgradeFunc(btnCreated1, btnCreated2, btnCreated3);
+		plabelUpgradeFunc(btnCreatedArr);
 
 		let nextButtonActive = false;
 		let minerGemsClicks = 0;
+		let minerGemsAdd = 0;
 		let minerGemsOn = false;
 		let btnUpdataNum = 0;
 
 		const intervalID = setInterval(() => {
 			if (gmNum == 3) {
-				clicks += btnCreated2.bonus + minerGemsClicks;
-				clicksDB += btnCreated2.bonus + minerGemsClicks;
+				clicks += minerGemsAdd + minerGemsClicks;
+				clicksDB += minerGemsAdd + minerGemsClicks;
 				clicksResult = clicks;
-				timeDisplay.textContent = ` GEMS PER SECOND: ${(btnCreated2.bonus + minerGemsClicks).toLocaleString()} `;
+				timeDisplay.textContent = ` GEMS PER SECOND: ${(minerGemsAdd + minerGemsClicks).toLocaleString()} `;
 				display.textContent = `GEMS: ${clicksResult.toLocaleString()}`;
 				clicksUpdateUpdata();
 				statDBUpdata();
@@ -393,11 +403,13 @@ function start() {
 		}
 
 		function clicksUpdateUpdata() {
-			plabelUpgradeFunc(btnCreated1, btnCreated2, btnCreated3);
+			plabelUpgradeFunc(btnCreatedArr);
 
-			function btnClickUpdata(btn) {
-				btn.index = letbiHight(btn);
-				btn.NumFix();
+			function btnClickUpdata(btnArr) {
+				for (let i = 0; i < btnArr.length; i++) {
+					btnArr[i].index = letBeHight(btnArr[i]);
+					btnArr[i].NumFix();
+				}
 			}
 
 			btnUpgId[4].onclick = () => {
@@ -409,9 +421,7 @@ function start() {
 				clicksUpdateUpdata();
 			};
 
-			btnClickUpdata(btnCreated3);
-			btnClickUpdata(btnCreated2);
-			btnClickUpdata(btnCreated1);
+			btnClickUpdata(btnCreatedArr);
 
 			displayClicks.textContent = ` Gems per click: ${btnCreated1.bonus.toLocaleString()} `;
 
@@ -451,12 +461,12 @@ function start() {
 					}
 				}
 
-				function btnNumFix(arg, num, numfix = false) {
+				function btnNumFix(arg, num, numFix = false) {
 					btnUpdataNum = arg;
 
-					function btnUpdate(...btn) {
+					function btnUpdate(btn) {
 						for (let index = 0; index < btn.length; index++) {
-							if (numfix == true) {
+							if (numFix == true) {
 								num = btn[index].index;
 							}
 
@@ -478,15 +488,15 @@ function start() {
 							}
 						}
 					}
-					btnUpdate(btnCreated1, btnCreated2, btnCreated3);
+					btnUpdate(btnCreatedArr);
 				}
 			}
 
 			listBtnFunc();
 
-			function letbiHight(btn) {
+			function letBeHight(btn) {
 				let whileSetTrue = true;
-				let indexClicks = 1;
+				let indexClicks = btn.letBeNum;
 				let updateCostWhile = btn.updateCost;
 
 				while (whileSetTrue) {
@@ -495,9 +505,14 @@ function start() {
 						updateCostWhile = btn.CostFix(indexClicks);
 					} else {
 						indexClicks -= 1;
+
 						if (indexClicks <= 0) {
+							btn.letBeNum = 1;
 							return 1;
+						} else if (clicks <= btn.updateCost) {
+							btn.letBeNum = 1;
 						} else {
+							btn.letBeNum = indexClicks;
 							return indexClicks;
 						}
 					}
@@ -572,12 +587,31 @@ function start() {
 				} else {
 					btnCreated3.name.setAttribute("disabled", null);
 				}
+
+				if (clicks >= btnCreated4.updateCost) {
+					btnCreated4.name.removeAttribute("disabled");
+					btnCreated4.name.onclick = () => {
+						onClickUpdate(btnCreated4, 1000);
+
+						if (minerGemsOn != true) {
+							minerGemsOn = true;
+						}
+
+						display.textContent = `GEMS: ${clicks.toLocaleString()}`;
+						clicksUpdateUpdata();
+						clicksBtnUpdate();
+						gamsMineUpdata();
+					};
+				} else {
+					btnCreated4.name.setAttribute("disabled", null);
+				}
 			}
 
 			function gamsMineUpdata() {
 				if (minerGemsOn) {
 					minerGemsClicks = btnCreated1.bonus * btnCreated3.bonus;
-					timeDisplay.textContent = ` GEMS PER SECOND: ${(btnCreated2.bonus + minerGemsClicks).toLocaleString()} `;
+					minerGemsAdd = btnCreated2.bonus + btnCreated4.bonus;
+					timeDisplay.textContent = ` GEMS PER SECOND: ${(minerGemsAdd + minerGemsClicks).toLocaleString()} `;
 				}
 			}
 
@@ -600,7 +634,8 @@ function start() {
 			listStatistic.innerHTML = `
 			<ul>
 				<li> Total Gems mined: ${clicksDB.toLocaleString()} </li>
-				<li> Total Upgraded buyed: ${levelDB.toLocaleString()} </li>
+				<li> Total Upgraded bought: ${levelDB.toLocaleString()} </li>
+				<li> Total Gems lost: ${totalLostGems.toLocaleString()} </li>
 			</ul>
 			
 			`;
@@ -646,19 +681,19 @@ function endGameDB() {
 	clicksBonus = 0;
 	clicksDB = 0;
 
-	function topAdd(scoretop, topnum) {
-		scoretop.push({ user: userDB.user, score: userDB.score, game: gameModeChenge[gmNum] });
+	function topAdd(scoreTop, topnum) {
+		scoreTop.push({ user: userDB.user, score: userDB.score, game: gameModeChange[gmNum] });
 
-		sortTop(scoretop);
+		sortTop(scoreTop);
 
 		topnum.innerHTML = "";
 
-		for (let item = 0; item < scoretop.length && item < 10; item++) {
+		for (let item = 0; item < scoreTop.length && item < 10; item++) {
 			let elem = document.createElement("li"),
-				contenter = document.createTextNode(` ${scoretop[item].user} - score: ${scoretop[item].score}`);
+				contented = document.createTextNode(` ${scoreTop[item].user} - score: ${scoreTop[item].score}`);
 
 			elem.classList.add("list-item");
-			elem.appendChild(contenter);
+			elem.appendChild(contented);
 
 			topnum.append(elem);
 		}
@@ -679,8 +714,8 @@ function btnDisable() {
 	if (btnDisableTrue) {
 		btnUN.removeAttribute("disabled");
 		inputUN.removeAttribute("disabled");
-		for (let btn = 0; btn < btnradio.length; btn++) {
-			btnradio[btn].removeAttribute("disabled");
+		for (let btn = 0; btn < btnRadio.length; btn++) {
+			btnRadio[btn].removeAttribute("disabled");
 		}
 		btnDisableTrue = false;
 
@@ -689,9 +724,9 @@ function btnDisable() {
 	} else {
 		btnUN.setAttribute("disabled", null);
 		inputUN.setAttribute("disabled", null);
-		for (let btn = 0; btn < btnradio.length; btn++) {
-			btnradio[btn].setAttribute("disabled", null);
-			btnradio[btn].onclick = null;
+		for (let btn = 0; btn < btnRadio.length; btn++) {
+			btnRadio[btn].setAttribute("disabled", null);
+			btnRadio[btn].onclick = null;
 		}
 		btnUN.onclick = null;
 		inputUN.onkeyup = null;

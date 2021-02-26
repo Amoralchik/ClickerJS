@@ -1,3 +1,5 @@
+--Version: 0.15.7 last update in this mount, add new btn, little fix, add letBeNum for letBeHight func (for fix a crash at cheat gems)
+
 --Version: 0.15.6.1 fix, displayClicks clear after exit from idle mode
 
 --Version: 0.15.6 more micro fix and littel addition
@@ -10,7 +12,7 @@ btnradio = radioBtn.querySelectorAll("input");
 btnradio[1]
 
 --Version: 0.15.5.5
-fix - non idle update, refactoring code, top list fix, input fix (QWERTYUIOP12 = QWERTYUIOP1... and QWERTYUIOP = QWERTYUIOP... | now: QWERTYUIOP12 = QWERTYUIOP... , QWERTYUIOP = QWERTYUIOP) and littel refactoring userNameInput Func
+fix - non idle update, refactoring code, top list fix, input fix (QWERTYUIOP12 = QWERTYUIOP1... and QWERTYUIOP = QWERTYUIOP... | now: QWERTYUIOP12 = QWERTYUIOP... , QWERTYUIOP = QWERTYUIOP) and little refactoring userNameInput Func
 
 --Version: 0.15.5.1.2
 fix, add onClickUpdate func in clicksBtnUpdate, now btn.onclick takes fewer lines
@@ -52,7 +54,7 @@ fix, fix price again, wip MAX button, not work lock button(wip)
 fix, price x10 - x100 fix, added new functionality to the section business
 
 --Version 0.15.1.9
-hotfix, upgrade system fix, btn dualclick fix, Price freeze fix
+hotfix, upgrade system fix, btn dualClick fix, Price freeze fix
 
 --Version 0.15.1.8
 fix, reDesigned, first IDLE Update

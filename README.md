@@ -1,3 +1,6 @@
+<h1> for test https://codepen.io/amoralchik/pen/poNWQyj </h1>
+
+--Version: 0.15.7.2 add random x1.5, x1.75, x2
 --Version: 0.15.7.1 css rework
 
 --Version: 0.15.7 last update in this mount, add new btn, little fix, add letBeNum for letBeHight func (for fix a crash at cheat gems)

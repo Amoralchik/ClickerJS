@@ -2,7 +2,7 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.7.1";
+mediaText.textContent = "Version: 0.15.7.2";
 
 let totalLostGems = 0;
 
@@ -357,9 +357,32 @@ function start() {
 
 		idleStart(btnCreatedArr);
 
+		let randomNum = 0;
+
+		function randomizeClick() {
+			function getRandomInt(max) {
+				return Math.floor(Math.random() * Math.floor(max));
+			}
+
+			let r = getRandomInt(100);
+
+			if (r <= 10) {
+				if (r > 5) {
+					return 1.5;
+				} else if (r <= 2) {
+					return 2;
+				} else {
+					return 1.75;
+				}
+			} else {
+				return 1;
+			}
+		}
+
 		button.onclick = () => {
-			clicks += btnCreated1.bonus;
-			clicksDB += btnCreated1.bonus;
+			randomNum = randomizeClick();
+			clicks += Math.floor(btnCreated1.bonus * randomNum);
+			clicksDB += Math.floor(btnCreated1.bonus * randomNum);
 			clicksResult = clicks;
 			display.textContent = ` GEMS: ${clicksResult.toLocaleString()}`;
 			scoreDB = clicksResult;
@@ -383,8 +406,9 @@ function start() {
 
 		const intervalID = setInterval(() => {
 			if (gmNum == 3) {
-				clicks += minerGemsAdd + minerGemsClicks;
-				clicksDB += minerGemsAdd + minerGemsClicks;
+				randomNum = randomizeClick();
+				clicks += Math.floor((minerGemsAdd + minerGemsClicks) * randomNum);
+				clicksDB += Math.floor((minerGemsAdd + minerGemsClicks) * randomNum);
 				clicksResult = clicks;
 				timeDisplay.textContent = ` GEMS PER SECOND: ${(minerGemsAdd + minerGemsClicks).toLocaleString()} `;
 				display.textContent = `GEMS: ${clicksResult.toLocaleString()}`;

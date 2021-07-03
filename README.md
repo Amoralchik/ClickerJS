@@ -1,4 +1,6 @@
-<h1> for test https://codepen.io/amoralchik/pen/poNWQyj </h1>
+<h1> for test https://codepen.io/amoralchik/pen/poNWQyj or https://amoralchik.github.io/ClickerJS/ </h1>
+
+--Version: 1.0.0 fix margin on main container, add restart on gameMod button
 
 --Version: 0.15.7.2 add random x1.5, x1.75, x2
 --Version: 0.15.7.1 css rework

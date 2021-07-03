@@ -2,7 +2,7 @@ let inputUN = document.querySelector("#input__UserName");
 let btnUN = document.querySelector("#btnUN");
 
 const mediaText = document.querySelector("#mediaText");
-mediaText.textContent = "Version: 0.15.7.2";
+mediaText.textContent = "Version: 1.0.0";
 
 let totalLostGems = 0;
 

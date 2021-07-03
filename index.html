@@ -16,7 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 	<body class="shellHide" id="body">
-		<main class="container shadow-lg p-3 m-5 rounded">
+		<main class="container shadow-lg p-3 mb-5 mt-5 rounded">
 			<div class="row justify-content-center">
 				<div class="row justify-content-md-center">
 					<div class="col-sm col-md-auto row justify-content-md-center">
@@ -26,7 +26,13 @@
 							<h1 class="fs-4 text-center toph1 text-primary" id="display__clicks"></h1>
 						</div>
 						<div class="btn-group btn-group-lg m-2" role="group">
-							<button type="button" class="btn btn-danger btn-lg w-100 buttonGame fs-2 text-wrap" id="buttonGame">START GAME</button>
+							<button
+								type="button"
+								class="btn btn-danger btn-lg w-100 buttonGame fs-2 text-wrap"
+								id="buttonGame"
+							>
+								START GAME
+							</button>
 
 							<button type="button" class="btn btn-outline-danger btn-sm w-auto" id="restart" disabled>
 								<i class="bi bi-arrow-counterclockwise"></i>
@@ -37,9 +43,18 @@
 			</div>
 			<div class="row justify-content-md-center col">
 				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-primary" id="winter">LIGHT <i class="bi bi-toggle-off"></i></button>
+					<button type="button" class="btn btn-primary" id="winter">
+						LIGHT <i class="bi bi-toggle-off"></i>
+					</button>
 					<div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="radioBtn">
-						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+						<input
+							type="radio"
+							class="btn-check"
+							name="btnradio"
+							id="btnradio1"
+							autocomplete="off"
+							checked
+						/>
 						<label class="btn btn-outline-primary" for="btnradio1">CLASSIC</label>
 
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
@@ -78,48 +93,117 @@
 				</div>
 				<div class="col-4">
 					<div class="list-group" id="list-tab" role="tablist">
-						<a class="list-group-item list-group-item-action bg-primary text-light active" id="list-upgrades-list" data-bs-toggle="list" href="#list-upgrades" role="tab" aria-controls="upgrades"
+						<a
+							class="list-group-item list-group-item-action bg-primary text-light active"
+							id="list-upgrades-list"
+							data-bs-toggle="list"
+							href="#list-upgrades"
+							role="tab"
+							aria-controls="upgrades"
 							>Upgrades</a
 						>
-						<a class="list-group-item list-group-item-action bg-primary text-light" id="list-business-list" data-bs-toggle="list" href="#list-business" role="tab" aria-controls="business">Business</a>
-						<a class="list-group-item list-group-item-action bg-primary text-light" id="list-statistic-list" data-bs-toggle="list" href="#list-statistic" role="tab" aria-controls="statistic">Statistic</a>
+						<a
+							class="list-group-item list-group-item-action bg-primary text-light"
+							id="list-business-list"
+							data-bs-toggle="list"
+							href="#list-business"
+							role="tab"
+							aria-controls="business"
+							>Business</a
+						>
+						<a
+							class="list-group-item list-group-item-action bg-primary text-light"
+							id="list-statistic-list"
+							data-bs-toggle="list"
+							href="#list-statistic"
+							role="tab"
+							aria-controls="statistic"
+							>Statistic</a
+						>
 					</div>
 				</div>
 				<div class="col-8">
 					<div class="tab-content" id="nav-tabContent">
-						<div class="tab-pane fade show active" id="list-upgrades" role="tabpanel" aria-labelledby="list-upgrades-list">
+						<div
+							class="tab-pane fade show active"
+							id="list-upgrades"
+							role="tabpanel"
+							aria-labelledby="list-upgrades-list"
+						>
 							<div class="m-1 list-group">
 								<list class="list-group-item align-items-center bg-transparent shadow-sm border-0">
 									<h5 class="text-uppercase text-center m-1">Add: 1 GEMS per click</h5>
-									<span class="badge bg-primary d-block rounded-pill h-25"><p class="text-center text-uppercase">lvl: 0</p></span>
-									<button class="btn btn-outline-secondary m-1 text-uppercase w-100" id="list-btn-1" type="button">Buy Upgrade</button>
+									<span class="badge bg-primary d-block rounded-pill h-25"
+										><p class="text-center text-uppercase">lvl: 0</p></span
+									>
+									<button
+										class="btn btn-outline-secondary m-1 text-uppercase w-100"
+										id="list-btn-1"
+										type="button"
+									>
+										Buy Upgrade
+									</button>
 								</list>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="list-business" role="tabpanel" aria-labelledby="list-business-list">
+						<div
+							class="tab-pane fade"
+							id="list-business"
+							role="tabpanel"
+							aria-labelledby="list-business-list"
+						>
 							<div class="m-1 list-group">
 								<list class="list-group-item align-items-center bg-transparent shadow-sm border-0">
 									<h5 class="text-uppercase text-center m-1">Add: 100 GEMS per second</h5>
-									<span class="badge bg-primary d-block rounded-pill h-25"><p class="text-center text-uppercase">lvl: 0</p></span>
-									<button class="btn btn-outline-secondary m-1 text-uppercase w-100" id="list-btn-5" type="button">1 GEM PER SECOND</button>
+									<span class="badge bg-primary d-block rounded-pill h-25"
+										><p class="text-center text-uppercase">lvl: 0</p></span
+									>
+									<button
+										class="btn btn-outline-secondary m-1 text-uppercase w-100"
+										id="list-btn-5"
+										type="button"
+									>
+										1 GEM PER SECOND
+									</button>
 								</list>
 							</div>
 							<div class="m-1 list-group">
 								<list class="list-group-item align-items-center bg-transparent shadow-sm border-0">
 									<h5 class="text-uppercase text-center m-1">Add: clicks per second</h5>
-									<span class="badge bg-primary d-block rounded-pill"><p class="text-center text-uppercase">lvl: 0</p></span>
-									<button class="btn btn-outline-secondary m-1 text-uppercase w-100" id="list-btn-7" type="button">1 MINER</button>
+									<span class="badge bg-primary d-block rounded-pill"
+										><p class="text-center text-uppercase">lvl: 0</p></span
+									>
+									<button
+										class="btn btn-outline-secondary m-1 text-uppercase w-100"
+										id="list-btn-7"
+										type="button"
+									>
+										1 MINER
+									</button>
 								</list>
 							</div>
 							<div class="m-1 list-group">
 								<list class="list-group-item align-items-center bg-transparent shadow-sm border-0">
 									<h5 class="text-uppercase text-center m-1">Add: 1000 GEMS per second</h5>
-									<span class="badge bg-primary d-block rounded-pill"><p class="text-center text-uppercase">lvl: 0</p></span>
-									<button class="btn btn-outline-secondary m-1 text-uppercase w-100" id="list-btn-8" type="button"></button>
+									<span class="badge bg-primary d-block rounded-pill"
+										><p class="text-center text-uppercase">lvl: 0</p></span
+									>
+									<button
+										class="btn btn-outline-secondary m-1 text-uppercase w-100"
+										id="list-btn-8"
+										type="button"
+									></button>
 								</list>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="list-statistic" role="tabpanel" aria-labelledby="list-statistic-list">...</div>
+						<div
+							class="tab-pane fade"
+							id="list-statistic"
+							role="tabpanel"
+							aria-labelledby="list-statistic-list"
+						>
+							...
+						</div>
 					</div>
 				</div>
 			</div>
@@ -129,17 +213,40 @@
 			<div class="accordion accordion-flush mt-2" id="accordionTwo">
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="heading4">
-						<button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+						<button
+							class="accordion-button collapsed bg-transparent text-primary"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#collapse4"
+							aria-expanded="false"
+							aria-controls="collapse4"
+						>
 							USERNAME
 						</button>
 					</h2>
-					<div id="collapse4" class="accordion-collapse show collapse" aria-labelledby="heading4" data-bs-parent="#accordionTwo">
+					<div
+						id="collapse4"
+						class="accordion-collapse show collapse"
+						aria-labelledby="heading4"
+						data-bs-parent="#accordionTwo"
+					>
 						<div class="accordion-body">
-							<div id="showToastLogin" class="toast shadow d-flex text-white bg-success text-uppercase w-100 fade" role="alert" aria-live="assertive" aria-atomic="true">
+							<div
+								id="showToastLogin"
+								class="toast shadow d-flex text-white bg-success text-uppercase w-100 fade"
+								role="alert"
+								aria-live="assertive"
+								aria-atomic="true"
+							>
 								<div class="toast-body w-100 hide" id="showAlertLogin" role="alert">ALERT</div>
 							</div>
 							<div class="input-group mb-3 mt-3">
-								<input class="form-control text__Transform" type="text" id="input__UserName" placeholder="Enter your username" />
+								<input
+									class="form-control text__Transform"
+									type="text"
+									id="input__UserName"
+									placeholder="Enter your username"
+								/>
 								<div class="input-group-append">
 									<button class="btn btn-outline-secondary" type="button" id="btnUN">submit</button>
 								</div>
@@ -154,11 +261,23 @@
 			<div class="accordion accordion-flush mt-2" id="accordionExample">
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingOne">
-						<button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						<button
+							class="accordion-button collapsed bg-transparent text-primary"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#collapseOne"
+							aria-expanded="false"
+							aria-controls="collapseOne"
+						>
 							CLASSIC TOP
 						</button>
 					</h2>
-					<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					<div
+						id="collapseOne"
+						class="accordion-collapse collapse"
+						aria-labelledby="headingOne"
+						data-bs-parent="#accordionExample"
+					>
 						<div class="accordion-body">
 							<div class="text-uppercase list-group" id="top1"></div>
 						</div>
@@ -166,11 +285,23 @@
 				</div>
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingTwo">
-						<button class="accordion-button collapsed bg-transparent text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<button
+							class="accordion-button collapsed bg-transparent text-primary"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#collapseTwo"
+							aria-expanded="false"
+							aria-controls="collapseTwo"
+						>
 							10 TOP
 						</button>
 					</h2>
-					<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+					<div
+						id="collapseTwo"
+						class="accordion-collapse collapse"
+						aria-labelledby="headingTwo"
+						data-bs-parent="#accordionExample"
+					>
 						<div class="accordion-body">
 							<div class="text-uppercase list-group" id="top2"></div>
 						</div>
@@ -189,7 +320,12 @@
 							15 TOP
 						</button>
 					</h2>
-					<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+					<div
+						id="collapseThree"
+						class="accordion-collapse collapse"
+						aria-labelledby="headingThree"
+						data-bs-parent="#accordionExample"
+					>
 						<div class="accordion-body">
 							<div class="text-uppercase list-group" id="top3"></div>
 						</div>
@@ -201,7 +337,12 @@
 		<div class="footer shadow-lg p-3 rounded">
 			<div class="media__block">
 				<a class="media__a" href="https://github.com/Amoralchik/ClickerJS" target="_blank">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github media__img" viewBox="0 0 16 16">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="currentColor"
+						class="bi bi-github media__img"
+						viewBox="0 0 16 16"
+					>
 						<path
 							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
 						/>
@@ -209,7 +350,11 @@
 					<p class="media__text" id="mediaText"></p>
 				</a>
 				<div class="media__a ms-2">
-					<img src="https://avatars.githubusercontent.com/u/26862281?s=460&u=c289328c250b94789a50283570cd84a8b6a5eb3d&v=4" class="media__img media__avatar rounded-circle" alt="" />
+					<img
+						src="https://avatars.githubusercontent.com/u/26862281?s=460&u=c289328c250b94789a50283570cd84a8b6a5eb3d&v=4"
+						class="media__img media__avatar rounded-circle"
+						alt=""
+					/>
 					<h1 class="media__text m-1">CREATED & DESIGNED BY AMORALCHIK</h1>
 				</div>
 			</div>
@@ -220,6 +365,6 @@
 			integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 			crossorigin="anonymous"
 		></script>
-		<script src="../clikerR/main.js"></script>
+		<script src="main.js"></script>
 	</body>
 </html>

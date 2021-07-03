@@ -184,21 +184,25 @@ let gameMode = gameModeChange[gmNum];
 function btnRadioOnClick() {
 	btnRadio[0].onclick = () => {
 		gmNum = 0;
+		restart();
 		gameModeFunc();
 	};
 
 	btnRadio[1].onclick = () => {
 		gmNum = 1;
+		restart();
 		gameModeFunc();
 	};
 
 	btnRadio[2].onclick = () => {
 		gmNum = 2;
+		restart();
 		gameModeFunc();
 	};
 
 	btnRadio[3].onclick = () => {
 		gmNum = 3;
+		restart();
 		gameModeFunc();
 	};
 }
@@ -494,17 +498,25 @@ function start() {
 								btn[index].NumFix;
 								if (btnUpdataNum == 2) {
 									btn[index].updateCost = btn[index].CostFix(num, true, 100);
-									btn[index].name.textContent = ` Buy ${btn[index].ArgNumFix(num, true, 100).toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
+									btn[index].name.textContent = ` Buy ${btn[index]
+										.ArgNumFix(num, true, 100)
+										.toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 								} else if (btnUpdataNum == 1) {
 									btn[index].updateCost = btn[index].CostFix(num, true, 10);
-									btn[index].name.textContent = ` Buy ${btn[index].ArgNumFix(num, true, 10).toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
+									btn[index].name.textContent = ` Buy ${btn[index]
+										.ArgNumFix(num, true, 10)
+										.toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 								} else {
 									btn[index].updateCost = btn[index].CostFix(num);
-									btn[index].name.textContent = ` Buy ${btn[index].ArgNumFix(num, false).toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
+									btn[index].name.textContent = ` Buy ${btn[index]
+										.ArgNumFix(num, false)
+										.toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
 								}
 							} else {
 								btn[index].updateCost = btn[index].CostFix(num);
-								btn[index].name.textContent = ` Buy ${num.toLocaleString()} Upgrades per: ${btn[index].updateCost.toLocaleString()}`;
+								btn[index].name.textContent = ` Buy ${num.toLocaleString()} Upgrades per: ${btn[
+									index
+								].updateCost.toLocaleString()}`;
 							}
 						}
 					}
